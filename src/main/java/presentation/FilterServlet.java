@@ -1,4 +1,4 @@
 package presentation;
 
-public class FilterServlet {
+public class FilterServlet  extends javax.servlet.http.HttpServlet  {
 }

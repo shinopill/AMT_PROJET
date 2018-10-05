@@ -1,4 +1,4 @@
 package presentation;
 
-public class LoginServlet {
+public class LoginServlet extends javax.servlet.http.HttpServlet  {
 }
