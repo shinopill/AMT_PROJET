@@ -1,4 +1,4 @@
 package presentation;
 
-public class NewAccountServlet {
+public class NewAccountServlet extends javax.servlet.http.HttpServlet  {
 }
