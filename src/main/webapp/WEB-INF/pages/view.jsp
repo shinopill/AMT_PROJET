@@ -6,11 +6,6 @@
   </head>
   <body>
     <h2>View</h2>
-    <ul>
-      <c:forEach items="${quotes}" var="quote">
-        <li>${quote.author} : "${quote.citation}"</li>
-      </c:forEach>
-    </ul>
-    The filter gave me a color: ${computedByFilter}
+    <p>You logged successfully!</p>
   </body>
 </html>

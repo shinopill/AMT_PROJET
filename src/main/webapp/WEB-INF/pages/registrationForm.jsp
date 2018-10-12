@@ -1,34 +1,21 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
-  <head>
+<head>
     <title>Registration</title>
-  </head>
-  <body>
-    <h2>Registration</h2>
-    Please provide the following information to register:
+</head>
+<body>
+<h2>Registration</h2>
+Please provide the following information to register:
 
-    <form action="${pageContext.request.contextPath}/view" method="post">
-      <label for="firstName">First name</label>
-      <input type="text" name="firstName" value="${firstName}">
-      </div>
-      <div>
-        <label for="lastName">Last name</label>
-        <input type="text" name="lastName" value="${lastName}"/>
-      </div>
-      <div>
-        <label for="email">Email</label>
-        <input type="text" name="email" value="${email}"/>
-      </div>
-      <button type="submit" name="Submit">Register</button>
-    </form>
-    <c:if test="${errors != null}">
-      Errors:
-      <ul>
-        <c:forEach items="${errors}" var="error">
-          <li>${error}</li>
-        </c:forEach>
-      </ul>
-    </c:if>
-  </body>
+<form action="${pageContext.request.contextPath}/register" method="post">
+    <input type="text" name="firstname" placeholder="Firstname">
+    <input type="text" name="lastname" placeholder="Lastname"/>
+    <input type="text" name="username" placeholder="Username"/>
+    <input type="text" name="email" placeholder="Email"/>
+    <input type="password" name="password" placeholder="Password"/>
+    <input type="password" name="confirmPassword" placeholder="Confirm password"/>
+    <button type="submit" name="register">Register</button>
+</form>
+</body>
 </html>
