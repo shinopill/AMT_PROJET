@@ -8,7 +8,7 @@
     <h2>Registration</h2>
     Please provide the following information to register:
 
-    <form action="${pageContext.request.contextPath}/register" method="post">
+    <form action="${pageContext.request.contextPath}/view" method="post">
       <label for="firstName">First name</label>
       <input type="text" name="firstName" value="${firstName}">
       </div>
