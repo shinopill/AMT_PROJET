@@ -8,5 +8,5 @@ import java.io.IOException;
 public class NewAccountServlet extends javax.servlet.http.HttpServlet  {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("/WEB-INF/pages/registrationForm.jsp").forward(request, response);
-    }
+   }
 }
