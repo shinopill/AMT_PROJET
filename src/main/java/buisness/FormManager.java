@@ -11,11 +11,12 @@ import model.User;
 public class FormManager {
 
    public boolean isUserValid(String userName) {
+      // TO DO
       return false;
    }
    
-   
-
-   // Add business logic below. (Right-click in editor and choose
-   // "Insert Code > Add Business Method")
+   public boolean isCredentialsValid(String userName, String password) {
+      // TO DO 
+      return false;
+   }
 }
