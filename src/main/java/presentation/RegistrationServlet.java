@@ -14,11 +14,10 @@ public class RegistrationServlet extends javax.servlet.http.HttpServlet  {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String firstname = req.getParameter("firstname");
         String lastname = req.getParameter("lastname");
-        String username = req.getParameter("username");
         String email = req.getParameter("email");
         String password = req.getParameter("password");
         String confirmPwd = req.getParameter("confirmPassword");
-        if(password != null && confirmPwd != null && password.equals(confirmPwd)){
+        if(!password.equals("") && !confirmPwd.equals("") && password.equals(confirmPwd)){
             req.getRequestDispatcher("/index.jsp").forward(req, resp);
         }else{
             req.getRequestDispatcher("/WEB-INF/pages/registrationForm.jsp").forward(req, resp);

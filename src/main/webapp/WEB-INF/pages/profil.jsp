@@ -8,7 +8,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Profile</title>
+    <title>Profil</title>
+    <link rel="stylesheet" href="/WEB-INF/css/styles.css">
 </head>
 <body>
    <h1>Bonjour ${requestScope.username} !</h1>

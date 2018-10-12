@@ -1,18 +1,19 @@
-<br>
-  <body>
+<html>
+<head>
+    <title>Index</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
 
-    <h2>Hello Customer!</h2>
-  Login:
-  <form action="${pageContext.request.contextPath}/view" method="post">
-      Username:
-      <input type="text" name="username"/><br>
-      Password:
-      <input type="password" name="password"/><br>
-      <input type="submit" value="Login"/>
-  </form>
+<h2>Hello Customer!</h2>
+Login:
+<form id="loginForm" action="${pageContext.request.contextPath}/view" method="post">
+
+    <input type="text" name="Email" placeholder="Email"/><br>
+    <input type="password" name="Password" placeholder="Password"/><br>
+    <input type="submit" value="Login"/>
+</form>
 </br></br>
-     <a href="${pageContext.request.contextPath}/register">Create an account?</a>
-
+<a href="${pageContext.request.contextPath}/register">Create an account?</a>
 </body>
->>>>>>> daa62ea1a188db40c03aadc0f80dfd911d3ba0f2
 </html>
