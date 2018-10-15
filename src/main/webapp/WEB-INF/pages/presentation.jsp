@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>Title</title>
+    <link rel="stylesheet" href="/WEB-INF/css/styles.css">
 </head>
 <body>
 
