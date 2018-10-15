@@ -1,7 +1,8 @@
 package buisness;
 
 import javax.ejb.Stateless;
-import model.User;
+import dao.UserDAO;
+import javax.ejb.EJB;
 
 /**
  *
@@ -10,6 +11,9 @@ import model.User;
 @Stateless
 public class FormManager {
 
+   @EJB
+   private UserDAO userDAO;
+   
    public boolean isUserValid(String userName) {
       // TO DO
       return false;

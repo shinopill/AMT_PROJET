@@ -15,7 +15,8 @@ public class User {
    
    public String getName() { return name; }
    public String getId() { return email; }
-
+   public String getPassword() { return password; }
+   
    public void setName(String newName) {
       name = newName;
    }
@@ -27,4 +28,6 @@ public class User {
    public void setPassword(String newPassword) {
       password = newPassword;
    }
+   
+   
 }
