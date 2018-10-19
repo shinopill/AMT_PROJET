@@ -6,6 +6,7 @@ public class User {
    private String email;
    private String password;
    
+   public User() {} // Empty constructor for JPA entity
    public User(String name, String email, String password) {
       
       this.name  = name;
