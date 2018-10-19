@@ -3,37 +3,46 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
 		 http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
-  <display-name>Archetype Created Web Application</display-name>
-  <servlet>
-    <servlet-name>AdminServlet</servlet-name>
-    <servlet-class>presentation.AdminServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <servlet-name>FilterServlet</servlet-name>
-    <servlet-class>presentation.FilterServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <servlet-name>RegistrationServlet</servlet-name>
-    <servlet-class>presentation.RegistrationServlet</servlet-class>
-  </servlet>
+    <display-name>Archetype Created Web Application</display-name>
+    <servlet>
+        <servlet-name>AdminServlet</servlet-name>
+        <servlet-class>presentation.AdminServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RegistrationServlet</servlet-name>
+        <servlet-class>presentation.RegistrationServlet</servlet-class>
+    </servlet>
     <servlet>
         <servlet-name>PresentationServlet</servlet-name>
         <servlet-class>presentation.ViewServlet</servlet-class>
     </servlet>
-  <servlet-mapping>
-    <servlet-name>AdminServlet</servlet-name>
-    <url-pattern>/admin</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>FilterServlet</servlet-name>
-    <url-pattern>/filter</url-pattern>
-  </servlet-mapping>
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>session.LoginServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>session.LogoutServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>AdminServlet</servlet-name>
+        <url-pattern>/admin</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RegistrationServlet</servlet-name>
         <url-pattern>/register</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>PresentationServlet</servlet-name>
-        <url-pattern>/view</url-pattern>
+        <url-pattern>/filtered/view</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/logout</url-pattern>
     </servlet-mapping>
 </web-app>
