@@ -2,11 +2,15 @@ package dao;
 
 import javax.annotation.Resource;
 import javax.ejb.Stateless;
+
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import model.User;
+
 
 @Stateless
 public class UserDAO implements UserDAOLocal {
@@ -38,5 +42,22 @@ public class UserDAO implements UserDAOLocal {
 
         return "";
     }
+
+
+   @Override
+   public void createUser() {
+      throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+   }
+
+   @Override
+   public void updateUser(String colonne) {
+      throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+   }
+
+   @Override
+   public void deleteUser(User user) {
+      throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+   }
+
 
 }
