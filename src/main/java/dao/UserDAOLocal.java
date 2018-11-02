@@ -9,5 +9,6 @@ public interface UserDAOLocal {
    public void createUser();
    public void updateUser(String colonne);
    public void deleteUser(User user);
+   public String getUser();
 
 }

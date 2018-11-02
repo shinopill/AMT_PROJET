@@ -15,11 +15,11 @@ import model.User;
 @Stateless
 public class UserDAO implements UserDAOLocal {
     // Add business logic below.
-    @Resource(lookup = "java:jboss/datasources/ExampleDS")
+    @Resource(lookup = "java:/runChickenRun")
     private DataSource dataSource;
     private Connection connection;
     public UserDAO() throws SQLException {
-       connection =  dataSource.getConnection();
+      // connection =  dataSource.getConnection();
         System.out.print("ntiente");
     }
 

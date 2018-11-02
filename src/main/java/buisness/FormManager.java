@@ -11,16 +11,17 @@ import javax.ejb.EJB;
 @Stateless
 public class FormManager {
 
-   @EJB
+
    private UserDAO userDAO;
-   
+
+
    public boolean isUserValid(String userName) {
-      // TO DO
+
       return false;
    }
-   
+
    public boolean isCredentialsValid(String userName, String password) {
-      // TO DO 
+      //TODO
       return false;
    }
 }
