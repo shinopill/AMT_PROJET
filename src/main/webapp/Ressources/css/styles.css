@@ -37,3 +37,7 @@ nav {
     display:flex;
     flex-direction: row;
 }
+
+.app > p{
+    margin-right:10px;
+}
