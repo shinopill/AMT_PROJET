@@ -1,17 +1,28 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Florent
-  Date: 05.10.2018
-  Time: 11:39
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    String email = null;
+    String sessionID = null;
+
+    Cookie[] cookies = request.getCookies();
+    if(cookies != null){
+        for(Cookie cookie : cookies){
+            if(cookie.getName().equals("email")) email = cookie.getValue();
+            if(cookie.getName().equals("JSESSIONID")) sessionID = cookie.getValue();
+        }
+    }
+    System.out.println("email = " + email + " and JSESSIONID = " + sessionID);
+%>
 <html>
 <head>
     <title>Profil</title>
     <link rel="stylesheet" href="/WEB-INF/css/styles.css">
 </head>
 <body>
-   <h1>Bonjour ${requestScope.username} !</h1>
+    <a href="${pageContext.request.contextPath}/profil">Profil</a>
+    <a href="${pageContext.request.contextPath}/view">Applications</a>
+    <a href="${pageContext.request.contextPath}/logout">Logout</a>
+    <h1>Profil:</h1>
+    <p>username</p>
+    <p>email</p>
+    <p>adress</p>
 </body>
 </html>

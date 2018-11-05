@@ -1,29 +1,47 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
+
 <head>
-    <title>View</title>
-    <link rel="stylesheet" href="../css/styles.css">
+    <title>Applications</title>
+    <link rel="stylesheet" href="../../Ressources/css/styles.css"/>
+    <style>
+    </style>
 </head>
 <body>
+<nav>
+    <a class="links" href="${pageContext.request.contextPath}/profil">Profil</a>
+    <a class="links" href="${pageContext.request.contextPath}/view">Applications</a>
+    <a class="links" href="${pageContext.request.contextPath}/logout">Logout</a>
+</nav>
+<div class='container'>
+    <h2>Your applications:</h2>
 
-<%
-    String email = null;
-    String sessionID = null;
+    <div class='app'>
+        <p>name</p>
+        <p>description</p>
+        <p>api key</p>
+        <p>api secret</p>
+    </div>
+    <div class='app'>
+        <p>name</p>
+        <p>description</p>
+        <p>api key</p>
+        <p>api secret</p>
+    </div>
+    <div class='app'>
+        <p>name</p>
+        <p>description</p>
+        <p>api key</p>
+        <p>api secret</p>
+    </div>
+    <div class='app'>
+        <p>name</p>
+        <p>description</p>
+        <p>api key</p>
+        <p>api secret</p>
+    </div>
 
-    Cookie[] cookies = request.getCookies();
-    if(cookies != null){
-        for(Cookie cookie : cookies){
-            if(cookie.getName().equals("email")) email = cookie.getValue();
-            if(cookie.getName().equals("JSESSIONID")) sessionID = cookie.getValue();
-        }
-    }
-    System.out.println("email = " + email + " and JSESSIONID = " + sessionID);
-%>
-
-<h2>View</h2>
-<p>You logged successfully!</p>
-</br></br>
-<a href="${pageContext.request.contextPath}/logout">Logout</a>
+</div>
 </body>
 </html>

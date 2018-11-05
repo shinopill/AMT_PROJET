@@ -24,6 +24,10 @@
         <servlet-name>LogoutServlet</servlet-name>
         <servlet-class>session.LogoutServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ProfilServlet</servlet-name>
+        <servlet-class>presentation.ProfilServlet</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>AdminServlet</servlet-name>
@@ -35,7 +39,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>PresentationServlet</servlet-name>
-        <url-pattern>/filtered/view</url-pattern>
+        <url-pattern>/view</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -44,5 +48,9 @@
     <servlet-mapping>
         <servlet-name>LogoutServlet</servlet-name>
         <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProfilServlet</servlet-name>
+        <url-pattern>/profil</url-pattern>
     </servlet-mapping>
 </web-app>
