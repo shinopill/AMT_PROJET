@@ -9,9 +9,17 @@
 <html>
 <head>
     <title>Admin</title>
-    <link rel="stylesheet" href="/WEB-INF/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Ressources/css/styles.css" />
 </head>
 <body>
+<a class="links" href="${pageContext.request.contextPath}/profil">Profil</a>
+<a class="links" href="${pageContext.request.contextPath}/view">Applications</a>
+<a class="links" href="${pageContext.request.contextPath}/logout">Logout</a>
+</nav>
 
+<div class="container">
+    <h1>Users:</h1>
+
+</div>
 </body>
 </html>

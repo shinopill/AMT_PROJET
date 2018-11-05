@@ -1,7 +1,7 @@
 <html>
 <head>
     <title>Index</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Ressources/css/styles.css" />
 </head>
 <body>
 <h2>Hello Customer!</h2>

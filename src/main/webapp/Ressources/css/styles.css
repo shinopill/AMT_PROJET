@@ -32,3 +32,8 @@ nav {
     background-color:white;
     color:black;
 }
+
+.app{
+    display:flex;
+    flex-direction: row;
+}

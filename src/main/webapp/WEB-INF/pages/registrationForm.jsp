@@ -3,23 +3,13 @@
 <html>
 <head>
     <title>Registration</title>
-    <style>
-        #registerForm{
-            display:flex;
-            flex-direction: column;
-            width: 200px;
-        }
-
-        input{
-            margin-bottom: 5px;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Ressources/css/styles.css" />
 </head>
 <body>
 <h2>Registration</h2>
 Please provide the following information to register:
 
-<form id="registerForm" action="${pageContext.request.contextPath}/register" method="post">
+<form class="registerForm" action="${pageContext.request.contextPath}/register" method="post">
     <input type="text" name="firstname" placeholder="Firstname">
     <input type="text" name="lastname" placeholder="Lastname"/>
     <input type="text" name="email" placeholder="Email"/>

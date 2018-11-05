@@ -4,9 +4,7 @@
 
 <head>
     <title>Applications</title>
-    <link rel="stylesheet" href="../../Ressources/css/styles.css"/>
-    <style>
-    </style>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Ressources/css/styles.css" />
 </head>
 <body>
 <nav>
@@ -23,12 +21,14 @@
         <p>api key</p>
         <p>api secret</p>
     </div>
+
     <div class='app'>
         <p>name</p>
         <p>description</p>
         <p>api key</p>
         <p>api secret</p>
     </div>
+
     <div class='app'>
         <p>name</p>
         <p>description</p>
