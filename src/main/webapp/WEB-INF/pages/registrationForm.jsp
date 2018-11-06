@@ -3,12 +3,13 @@
 <html>
 <head>
     <title>Registration</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Ressources/css/styles.css" /></head>
-<body class="container">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Ressources/css/styles.css" />
+</head>
+<body>
 <h2>Registration</h2>
 Please provide the following information to register:
 
-<form id="registerForm" action="${pageContext.request.contextPath}/register" method="post">
+<form class="registerForm" action="${pageContext.request.contextPath}/register" method="post">
     <input type="text" name="firstname" placeholder="Firstname">
     <input type="text" name="lastname" placeholder="Lastname"/>
     <input type="text" name="email" placeholder="Email"/>

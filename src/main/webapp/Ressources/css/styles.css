@@ -1,4 +1,4 @@
-#registerForm{
+.registerForm{
     display:flex;
     flex-direction: column;
     width: 200px;
@@ -31,4 +31,13 @@ nav {
 .links:hover{
     background-color:white;
     color:black;
+}
+
+.app{
+    display:flex;
+    flex-direction: row;
+}
+
+.app > p{
+    margin-right:10px;
 }

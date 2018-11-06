@@ -1,7 +1,7 @@
 drop database if exists AMT;
-create database ATM;
+create database AMT;
 
-use ATM;
+use AMT;
 
 create table app_users(
 	username varchar(20),

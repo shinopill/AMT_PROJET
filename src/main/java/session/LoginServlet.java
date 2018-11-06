@@ -18,6 +18,9 @@ public class LoginServlet extends javax.servlet.http.HttpServlet {
     @EJB
     UserDAOLocal dao;
 
+    protected void doGET(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getRequestDispatcher("/index.jsp").forward(req, resp);
+    }
 
     // Source for session management; https://medium.com/@kasunpdh/session-management-in-java-using-servlet-filters-and-cookies-7c536b40448f
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -27,7 +30,7 @@ public class LoginServlet extends javax.servlet.http.HttpServlet {
 
         if(email != null && password != null){
             //TODO: verif avec la db
-            if(email.equals(dao.getUser()) && password.equals("123")){
+            if(email.equals("gnriegnrregir") && password.equals("123")){
                 System.out.println("login correct");
                 // Get the old session and invalidate it
                 HttpSession oldSession = req.getSession(false);
@@ -44,11 +47,20 @@ public class LoginServlet extends javax.servlet.http.HttpServlet {
                 resp.addCookie(cookie);
 
                 //TODO: admin vs user
+                int admin = dao.getAdmin(email);
+                int isActice = dao.getActive(email);
+                if(admin == 1){
+                    req.getRequestDispatcher("/WEB-INF/pages/admin.jsp").forward(req, resp);
+                }else if(isActice == 0 ){
+                    req.setAttribute("Active",0);
+                    req.getRequestDispatcher("/index.jsp").forward(req, resp);
+                }
                 req.getRequestDispatcher("/WEB-INF/pages/view.jsp").forward(req, resp);
             }else {
                 System.out.println("login faux");
                 req.getRequestDispatcher("/index.jsp").forward(req, resp);
             }
         }
+
     }
 }

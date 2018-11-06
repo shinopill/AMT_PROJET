@@ -1,7 +1,9 @@
 package presentation;
 
 import dao.UserDAO;
+import dao.UserDAOLocal;
 
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,19 +12,18 @@ import java.sql.SQLException;
 
 public class AdminServlet extends javax.servlet.http.HttpServlet {
 
-    UserDAO dao;
+    @EJB
+    UserDAOLocal dao;
 
-    {
-        try {
-            dao = new UserDAO();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+
 
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.print(dao.getUser());
         request.getRequestDispatcher("/WEB-INF/pages/admin.jsp").forward(request, response);
+    }
+
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
     }
 }

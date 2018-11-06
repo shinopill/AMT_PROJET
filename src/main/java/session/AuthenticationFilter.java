@@ -2,13 +2,7 @@ package session;
 
 import java.io.IOException;
 
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
+import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -33,7 +27,8 @@ public class AuthenticationFilter implements Filter {
 
         if (session == null) {   //checking whether the session exists
             this.context.log("Unauthorized access request");
-            req.getRequestDispatcher("/index.jsp").forward(req, resp);
+            RequestDispatcher rd =  req.getRequestDispatcher("/index.jsp");
+            rd.include(req,resp);
         } else {
             // pass the request along the filter chain
             chain.doFilter(request, response);

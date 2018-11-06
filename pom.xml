@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>ch.heigvd.amt</groupId>
-  <artifactId>amt-projet</artifactId>
+  <artifactId>amt-project</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>war</packaging>
 
@@ -39,6 +39,6 @@
   </dependencies>
 
   <build>
-    <finalName>amt_projet</finalName>
+    <finalName>amt_project</finalName>
   </build>
 </project>

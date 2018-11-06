@@ -45,19 +45,32 @@ public class UserDAO implements UserDAOLocal {
 
 
    @Override
-   public void createUser() {
+   public int createUser(User user) {
       throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
    }
 
    @Override
-   public void updateUser(String colonne) {
+   public int updateUser(String colonne) {
       throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
    }
 
    @Override
-   public void deleteUser(User user) {
+   public int deleteUser(User user) {
       throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
    }
 
+    @Override
+    public int getAdmin(String username) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
+    @Override
+    public int getActive(String username){
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int setActive(int a ){
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
