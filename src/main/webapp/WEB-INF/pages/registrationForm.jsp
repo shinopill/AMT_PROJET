@@ -3,19 +3,8 @@
 <html>
 <head>
     <title>Registration</title>
-    <style>
-        #registerForm{
-            display:flex;
-            flex-direction: column;
-            width: 200px;
-        }
-
-        input{
-            margin-bottom: 5px;
-        }
-    </style>
-</head>
-<body>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Ressources/css/styles.css" /></head>
+<body class="container">
 <h2>Registration</h2>
 Please provide the following information to register:
 
