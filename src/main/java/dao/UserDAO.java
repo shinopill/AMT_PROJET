@@ -14,7 +14,15 @@ import model.User;
 
 @Stateless
 public class UserDAO implements UserDAOLocal {
-    // Add business logic below.
+   
+   private final String userFindingQuery = "SELECT * FROM Users WHERE Users.id = ";
+   
+   private String userCreatingQuery(String name, String mail, String pwd){
+       return "INSERT INTO Users(name, email, password) VALUES ("
+               + name +", "+ mail + ", " + pwd +")";
+    }
+   
+   // Add business logic below.
     @Resource(lookup = "java:/runChickenRun")
     private DataSource dataSource;
     private Connection connection;
@@ -23,29 +31,29 @@ public class UserDAO implements UserDAOLocal {
         System.out.print("ntiente");
     }
 
-    public String getUser(){
-        String sql = "SELECT ID FROM users";
+    public User find(String userMail) {
+        
         PreparedStatement preparedStatement    = null;
         ResultSet resultSet = null;
         try {
-            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement = connection.prepareStatement(userFindingQuery + userMail+";");
             resultSet = preparedStatement.executeQuery();
-
+        
             if (!resultSet.next()) {
-
-                return resultSet.getString(1);
+               
+                //return resultSet.getString(1);
 
             }
         }catch (Exception e){
             e.printStackTrace();
         }
 
-        return "";
+        return new User();
     }
 
 
    @Override
-   public int createUser(User user) {
+   public void createUser(User user) {
       throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
    }
 
@@ -55,7 +63,7 @@ public class UserDAO implements UserDAOLocal {
    }
 
    @Override
-   public int deleteUser(User user) {
+   public void deleteUser(User user) {
       throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
    }
 

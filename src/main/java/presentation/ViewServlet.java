@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class ViewServlet extends javax.servlet.http.HttpServlet {
+
     private User user;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

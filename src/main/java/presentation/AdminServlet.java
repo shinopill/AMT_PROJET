@@ -13,13 +13,13 @@ import java.sql.SQLException;
 public class AdminServlet extends javax.servlet.http.HttpServlet {
 
     @EJB
-    UserDAOLocal dao;
+    UserDAOLocal userDao;
 
 
 
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.print(dao.getUser());
+        System.out.print(userDao.find("Someone@mail.com"));
         request.getRequestDispatcher("/WEB-INF/pages/admin.jsp").forward(request, response);
     }
 

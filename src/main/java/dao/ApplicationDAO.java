@@ -8,7 +8,7 @@ import javax.sql.DataSource;
 public class ApplicationDAO implements ApplicationDAOLocal {
 
    // Add business logic below.
-    @Resource(lookup = "java:/AMT")
+    @Resource(lookup = "jdbc:/AMT")
     private DataSource dataSource;
 
 
