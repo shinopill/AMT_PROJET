@@ -23,7 +23,7 @@ public class UserDAO implements UserDAOLocal {
     }
    
    // Add business logic below.
-    @Resource(lookup = "java:/runChickenRun")
+    @Resource(lookup = "java:/AMT")
     private DataSource dataSource;
     private Connection connection;
     public UserDAO() throws SQLException {
@@ -33,7 +33,7 @@ public class UserDAO implements UserDAOLocal {
 
     public User find(String userMail) {
         
-        PreparedStatement preparedStatement    = null;
+        PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         try {
             preparedStatement = connection.prepareStatement(userFindingQuery + userMail+";");
