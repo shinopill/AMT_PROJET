@@ -24,13 +24,26 @@ public class RegistrationServlet extends javax.servlet.http.HttpServlet  {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
         String confirmPwd = req.getParameter("confirmPassword");
-        if(!password.equals("") && !confirmPwd.equals("") && password.equals(confirmPwd)){
+        User alreadyTaken = dao.find(email);
+        String message = "";
+        if(alreadyTaken == null){
+            message = "Email already used";
+            redirectToRegistartion(req,resp,message);
+        }
 
+        if(!password.equals("") && !confirmPwd.equals("") && password.equals(confirmPwd)){
             User user = new User(firstname,email,password);
             dao.createUser(user);
             req.getRequestDispatcher("/index.jsp").forward(req, resp);
         }else{
-            req.getRequestDispatcher("/WEB-INF/pages/registrationForm.jsp").forward(req, resp);
+             message = "Error the password don't match";
+            redirectToRegistartion(req,resp,message);
         }
+    }
+
+    private void redirectToRegistartion(HttpServletRequest req,HttpServletResponse resp,String message) throws ServletException, IOException {
+        req.setAttribute("erreur",message);
+        req.getRequestDispatcher("/WEB-INF/pages/registrationForm.jsp").forward(req, resp);
+
     }
 }

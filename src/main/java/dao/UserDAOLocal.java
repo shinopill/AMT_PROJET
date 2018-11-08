@@ -3,6 +3,8 @@ package dao;
 import javax.ejb.Local;
 import model.User;
 
+import java.util.ArrayList;
+
 @Local
 public interface UserDAOLocal {
    
@@ -13,5 +15,6 @@ public interface UserDAOLocal {
    public User find(String userMail);
    public int getAdmin(String username);
    public int getActive(String username);
+   public ArrayList<User> getAllUsers();
 
 }

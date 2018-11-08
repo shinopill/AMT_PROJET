@@ -15,6 +15,13 @@
 <div class='container'>
     <h2>Your applications:</h2>
 
+    <h1>Users:</h1>
+    <ul>
+        <c:forEach items="${applist}" var="application">
+            <p>${application.getName()}</p>
+        </c:forEach>
+    </ul>
+</div>
     <div class='app'>
         <p>name</p>
         <p>description</p>

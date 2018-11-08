@@ -16,6 +16,9 @@ Please provide the following information to register:
     <input type="password" name="password" placeholder="Password"/>
     <input type="password" name="confirmPassword" placeholder="Confirm password"/>
     <button type="submit" name="register">Register</button>
+    <c:if test="${erreur ne null}">
+        <p>${erreur}</p>
+    </c:if>
 </form>
 </body>
 </html>

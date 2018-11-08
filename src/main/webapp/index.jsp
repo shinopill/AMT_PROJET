@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html>
 <head>
     <title>Index</title>
@@ -11,6 +13,9 @@ Login:
     <input type="text" name="Email" placeholder="Email"/><br>
     <input type="password" name="Password" placeholder="Password"/><br>
     <input type="submit" value="Login"/>
+    <c:if test="${erreur ne null}">
+        <p>${erreur}</p>
+    </c:if>
 </form>
 <a href="${pageContext.request.contextPath}/register">Create an account?</a>
 </body>
