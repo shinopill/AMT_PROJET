@@ -3,22 +3,24 @@
 <html>
 <head>
     <title>Registration</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Ressources/css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Ressources/css/styles.css"/>
 </head>
 <body>
-<h2>Registration</h2>
-Please provide the following information to register:
+<div class="form_div">
+    <h2>Registration</h2>
+    Please provide the following information to register:
 
-<form class="registerForm" action="${pageContext.request.contextPath}/register" method="post">
-    <input type="text" name="firstname" placeholder="Firstname">
-    <input type="text" name="lastname" placeholder="Lastname"/>
-    <input type="text" name="email" placeholder="Email"/>
-    <input type="password" name="password" placeholder="Password"/>
-    <input type="password" name="confirmPassword" placeholder="Confirm password"/>
-    <button type="submit" name="register">Register</button>
-    <c:if test="${erreur ne null}">
-        <p>${erreur}</p>
-    </c:if>
-</form>
+    <form action="${pageContext.request.contextPath}/register" method="post">
+        <input type="text" name="firstname" placeholder="Firstname">
+        <input type="text" name="lastname" placeholder="Lastname"/>
+        <input type="text" name="email" placeholder="Email"/>
+        <input type="password" name="password" placeholder="Password"/>
+        <input type="password" name="confirmPassword" placeholder="Confirm password"></br>
+        <input type="submit" value="Register"/>
+        <c:if test="${erreur ne null}">
+            <p>${erreur}</p>
+        </c:if>
+    </form>
+</div>
 </body>
 </html>

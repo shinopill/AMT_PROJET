@@ -1,10 +1,10 @@
-.registerForm{
-    display:flex;
+.registerForm {
+    display: flex;
     flex-direction: column;
     width: 200px;
 }
 
-input{
+input {
     margin-bottom: 5px;
 }
 
@@ -17,8 +17,8 @@ input{
 }
 
 nav {
-    background-color:black;
-    display:flex;
+    background-color: black;
+    display: flex;
 }
 
 .links {
@@ -28,16 +28,30 @@ nav {
     align-content: center;
 }
 
-.links:hover{
-    background-color:white;
-    color:black;
+.links:hover {
+    background-color: white;
+    color: black;
 }
 
-.app{
-    display:flex;
+.app {
+    display: flex;
     flex-direction: row;
 }
 
-.app > p{
-    margin-right:10px;
+.app > p {
+    margin-right: 10px;
+}
+
+.form_div {
+
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 300px;
+    border-radius: 3px;
+
+    text-align: center;
 }

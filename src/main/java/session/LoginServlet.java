@@ -35,7 +35,6 @@ public class LoginServlet extends javax.servlet.http.HttpServlet {
         String message = "";
 
         if(email != null && password != null){
-            //TODO: verif avec la db
             try {
                 User userToTest = userDao.find(email);
 
