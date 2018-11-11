@@ -3,13 +3,16 @@ package model;
 import java.util.UUID;
 
 public class Application {
+
+   private String appOwner;
    private String name;
    private String description;
-   final private int keyAPI;
-   final private int keySecret;
+
+   private int keyAPI;
+   private int keySecret;
    
-   public Application(String name, String description) {
-      
+   public Application(String appOwner ,String name, String description) {
+      this.appOwner = appOwner;
       this.name = name;
       this.description = description;
       
@@ -21,12 +24,22 @@ public class Application {
    public String getName() { return name; }
    public String getDescription() { return description; }
 
-   public void setName(String newName){
-      name = newName;
+   public int getKeyAPI() {
+      return keyAPI;
    }
-   
-   public void setDescription(String newDescription) {
-      description = newDescription;
+
+   public int getKeySecret() {
+      return keySecret;
    }
-   
+
+   // In order to change the keys when we get  the data from
+   // DB and create a new app with the data
+   public void setKeyAPI(int keyAPI) {
+      this.keyAPI = keyAPI;
+   }
+
+   public void setKeySecret(int keySecret) {
+      this.keySecret = keySecret;
+   }
+
 }

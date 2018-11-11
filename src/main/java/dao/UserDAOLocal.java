@@ -3,18 +3,19 @@ package dao;
 import javax.ejb.Local;
 import model.User;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 @Local
 public interface UserDAOLocal {
    
-   public void createUser(User user);
-   public int setActive(int a );
-   public int updateUser(String colonne);
-   public void deleteUser(User user);
-   public User find(String userMail);
-   public int getAdmin(String username);
-   public int getActive(String username);
-   public ArrayList<User> getAllUsers();
+   int createUser(User user) throws SQLException;
+   int setActive(String email,int a ) throws SQLException;
+   int updateUser(String colonne);
+   int deleteUser(String email) throws SQLException;
+   User find(String userMail) throws SQLException;
+   int getAdmin(String username) throws SQLException;
+   int getActive(String username) throws SQLException;
+   ArrayList<User> getAllUsers() throws SQLException;
 
 }

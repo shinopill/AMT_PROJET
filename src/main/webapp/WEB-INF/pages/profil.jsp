@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Profil</title>
@@ -10,10 +11,12 @@
     <a class="links" href="${pageContext.request.contextPath}/logout">Logout</a>
 </nav>
 <div class="container">
-    <h1>Profil:</h1>
-    <p>username</p>
-    <p>email</p>
-    <p>adress</p>
+    <c:if test="${user ne null}">
+        <p>Your informations </p>
+        <p>Firstname : ${user.getFistName()}</p>
+        <p>LastName : ${user.getLastName()}</p>
+        <p>Email : ${user.getEmail()}</p>
+</c:if>
 </div>
 </body>
 </html>

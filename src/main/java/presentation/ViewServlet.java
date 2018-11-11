@@ -10,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
@@ -23,8 +24,12 @@ public class ViewServlet extends javax.servlet.http.HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("In view.doGet");
-        ArrayList<Application> list = new ArrayList<>();
-        list.add(new Application("coucou","c'est cool"));//appDao.getAllApplications(user);
+        ArrayList<Application> list = null;
+        try {
+            list = appDao.getAllApplications((String)request.getAttribute("email"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         request.setAttribute("applist",list);
         request.getRequestDispatcher("/WEB-INF/pages/view.jsp").forward(request, response);
     }

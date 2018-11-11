@@ -2,33 +2,51 @@ package model;
 
 public class User {
 
-   private String name;
+   private String firstName;
    private String email;
    private String password;
-   
+   private String lastName;
+   private int isBeingReseted;
+   private int isDisabled;
+   private int isAdmin;
+
    public User() {} // Empty constructor for JPA entity
-   public User(String name, String email, String password) {
-      
-      this.name  = name;
+
+   public User(String firstName,String lastName, String email, String password, int isBeingReseted, int isDisabled, int isAdmin) {
+      this.firstName = firstName;
+      this.lastName = lastName;
       this.email = email;
       this.password = password;
+      this.isBeingReseted = isBeingReseted;
+      this.isDisabled = isDisabled;
+      this.isAdmin = isAdmin;
    }
-   
-   public String getName() { return name; }
-   public String getId() { return email; }
-   public String getPassword() { return password; }
-   
-   public void setName(String newName) {
-      name = newName;
+
+   public String getFirstName() {
+      return firstName;
    }
-   
-   public void setMail(String newMail) {
-      email = newMail;
+
+   public String getEmail() {
+      return email;
    }
-   
-   public void setPassword(String newPassword) {
-      password = newPassword;
+
+   public String getPassword() {
+      return password;
    }
-   
-   
+
+   public String getLastName() {
+      return lastName;
+   }
+
+   public int getIsBeingReseted() {
+      return isBeingReseted;
+   }
+
+   public int getIsDisabled() {
+      return isDisabled;
+   }
+
+   public int getIsAdmin() {
+      return isAdmin;
+   }
 }

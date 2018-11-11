@@ -36,40 +36,43 @@ public class LoginServlet extends javax.servlet.http.HttpServlet {
 
         if(email != null && password != null){
             //TODO: verif avec la db
-            if(email.equals("toto") && password.equals("123")){
+            try {
+                User userToTest = userDao.find(email);
+
+                if(userToTest != null && email.equals(userToTest.getEmail()) && password.equals(userToTest.getPassword())){
+
+                    // Generate a new session
+                    HttpSession newSession = req.getSession();
+                    newSession.setAttribute("email", email);
+                    Cookie cookie = new Cookie("email", email);
+
+                    System.out.println(cookie.getValue());
+                    resp.addCookie(cookie);
+
+                    int isAdmin = userToTest.getIsAdmin();
+                    int isDisabled = userToTest.getIsDisabled();
+
+                    newSession.setAttribute("admin",isAdmin);
+                    newSession.setAttribute("isDisabled",isDisabled);
+                    if(isAdmin == 1){
+                        ArrayList<User> usersArray = userDao.getAllUsers();
+                        req.setAttribute("usersArray",usersArray);
+                        req.getRequestDispatcher("/WEB-INF/pages/admin.jsp").forward(req, resp);
+                    }else if(isDisabled == 1 ){
+                        message = "Your account has been disabled";
+                        redirectToIndex(req,resp,message);
+                    }
 
 
-                System.out.println("login correct");
-                // Generate a new session
-                HttpSession newSession = req.getSession();
-                newSession.setAttribute("email", email);
-                Cookie cookie = new Cookie("email", email);
-
-                System.out.println(cookie.getValue());
-                resp.addCookie(cookie);
-
-                //TODO: admin vs user
-                int admin = 0;//dao.getAdmin(email);
-                int isActive = 1;// dao.getActive(email);
-                newSession.setAttribute("admin",admin);
-                newSession.setAttribute("active",isActive);
-                if(admin == 1){
-                    ArrayList<User> usersArray = userDao.getAllUsers();
-                    req.setAttribute("usersArray",usersArray);
-                    req.getRequestDispatcher("/WEB-INF/pages/admin.jsp").forward(req, resp);
-                }else if(isActive == 0 ){
-                    message = "Your account has been disabled";
+                    ArrayList<Application> list = appDao.getAllApplications(userToTest.getEmail());
+                    req.setAttribute("applist",list);
+                    req.getRequestDispatcher("/WEB-INF/pages/view.jsp").forward(req, resp);
+                }else {
+                    message = "Wrong credentials";
                     redirectToIndex(req,resp,message);
                 }
-
-                User user =  userDao.find(req.getParameter("email"));
-                ArrayList<Application> list = new ArrayList<>();  //appDao.getAllApplications(user);
-                list.add(new Application("coucou","c'est cool"));
-                req.setAttribute("applist",list);
-                req.getRequestDispatcher("/WEB-INF/pages/view.jsp").forward(req, resp);
-            }else {
-                message = "Wrong credentials";
-                redirectToIndex(req,resp,message);
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
 

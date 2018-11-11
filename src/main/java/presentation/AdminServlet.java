@@ -21,7 +21,12 @@ public class AdminServlet extends javax.servlet.http.HttpServlet {
 
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ArrayList<User> usersArray = userDao.getAllUsers();
+        ArrayList<User> usersArray = null;
+        try {
+            usersArray = userDao.getAllUsers();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         request.setAttribute("usersArray",usersArray);
         // System.out.print(userDao.find("Someone@mail.com"));
         request.getRequestDispatcher("/WEB-INF/pages/admin.jsp").forward(request, response);
