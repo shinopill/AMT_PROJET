@@ -10,12 +10,14 @@
 <nav>
     <a class="links" href="${pageContext.request.contextPath}/profil">Profil</a>
     <a class="links" href="${pageContext.request.contextPath}/view">Applications</a>
+    <c:if test="${admin == -1}">
+        <a class="links" href="${pageContext.request.contextPath}/admin">Admin</a>
+    </c:if>
     <a class="links" href="${pageContext.request.contextPath}/logout">Logout</a>
 </nav>
 <div class='container'>
-    <h2>Your applications:</h2>
+    <h1>Your applications:</h1>
 
-    <h1>Users:</h1>
     <ul>
         <c:forEach items="${applist}" var="application">
             <p>${application.getName()}</p>
@@ -28,27 +30,6 @@
         <p>api key</p>
         <p>api secret</p>
     </div>
-
-    <div class='app'>
-        <p>name</p>
-        <p>description</p>
-        <p>api key</p>
-        <p>api secret</p>
-    </div>
-
-    <div class='app'>
-        <p>name</p>
-        <p>description</p>
-        <p>api key</p>
-        <p>api secret</p>
-    </div>
-    <div class='app'>
-        <p>name</p>
-        <p>description</p>
-        <p>api key</p>
-        <p>api secret</p>
-    </div>
-
 </div>
 </body>
 </html>

@@ -13,9 +13,12 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Ressources/css/styles.css" />
 </head>
 <body>
-<a class="links" href="${pageContext.request.contextPath}/profil">Profil</a>
-<a class="links" href="${pageContext.request.contextPath}/view">Applications</a>
-<a class="links" href="${pageContext.request.contextPath}/logout">Logout</a>
+<nav>
+    <a class="links" href="${pageContext.request.contextPath}/profil">Profil</a>
+    <a class="links" href="${pageContext.request.contextPath}/view">Applications</a>
+    <a class="links" href="${pageContext.request.contextPath}/admin">Admin</a>
+    <a class="links" href="${pageContext.request.contextPath}/logout">Logout</a>
+</nav>
 </nav>
 
 <div class="container">

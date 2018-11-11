@@ -25,12 +25,16 @@ public class ViewServlet extends javax.servlet.http.HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("In view.doGet");
         ArrayList<Application> list = null;
+        int isAdmin = 0;
         try {
             list = appDao.getAllApplications((String)request.getAttribute("email"));
+            isAdmin = userDao.getAdmin("email");
         } catch (SQLException e) {
             e.printStackTrace();
         }
         request.setAttribute("applist",list);
+        request.setAttribute("admin", isAdmin);
+        System.out.println("Admin = " + isAdmin);
         request.getRequestDispatcher("/WEB-INF/pages/view.jsp").forward(request, response);
     }
 }
