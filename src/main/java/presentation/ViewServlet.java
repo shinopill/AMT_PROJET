@@ -9,6 +9,7 @@ import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -27,8 +28,9 @@ public class ViewServlet extends javax.servlet.http.HttpServlet {
         ArrayList<Application> list = null;
         int isAdmin = 0;
         try {
-            list = appDao.getAllApplications((String)request.getAttribute("email"));
-            isAdmin = userDao.getAdmin("email");
+            HttpSession session = request.getSession(false);
+            list = appDao.getAllApplications((String)session.getAttribute("email"));
+            isAdmin = (int)session.getAttribute("admin");
         } catch (SQLException e) {
             e.printStackTrace();
         }

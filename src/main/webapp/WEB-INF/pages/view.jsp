@@ -10,7 +10,7 @@
 <nav>
     <a class="links" href="${pageContext.request.contextPath}/profil">Profil</a>
     <a class="links" href="${pageContext.request.contextPath}/view">Applications</a>
-    <c:if test="${admin == -1}">
+    <c:if test="${admin eq 1}">
         <a class="links" href="${pageContext.request.contextPath}/admin">Admin</a>
     </c:if>
     <a class="links" href="${pageContext.request.contextPath}/logout">Logout</a>

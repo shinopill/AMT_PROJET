@@ -151,9 +151,8 @@ public class UserDAO implements UserDAOLocal {
             preparedStatement.setString(1,username);
             resultSet = preparedStatement.executeQuery();
 
-            if (!resultSet.next()) {
+            if (resultSet.next()) {
                 return resultSet.getInt(1);
-
             }
         }catch (Exception e){
             e.printStackTrace();
