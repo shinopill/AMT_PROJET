@@ -31,4 +31,8 @@ public class ProfilServlet extends javax.servlet.http.HttpServlet {
         request.getRequestDispatcher("/WEB-INF/pages/profil.jsp").forward(request, response);
     }
 
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        this.doGet(req, resp);
+    }
 }

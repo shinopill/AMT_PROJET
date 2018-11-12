@@ -32,6 +32,18 @@
         <servlet-name>ApplicationServlet</servlet-name>
         <servlet-class>presentation.ApplicationServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PasswordServlet</servlet-name>
+        <servlet-class>presentation.PasswordServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditAppServlet</servlet-name>
+        <servlet-class>app.EditAppServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteAppServlet</servlet-name>
+        <servlet-class>app.DeleteAppServlet</servlet-class>
+    </servlet>
 
 
 
@@ -63,6 +75,19 @@
         <servlet-name>ApplicationServlet</servlet-name>
         <url-pattern>/appregister</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PasswordServlet</servlet-name>
+        <url-pattern>/password</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditAppServlet</servlet-name>
+        <url-pattern>/edit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteAppServlet</servlet-name>
+        <url-pattern>/delete</url-pattern>
+    </servlet-mapping>
+
 
     <filter>
         <filter-name>AuthentificationFilter</filter-name>

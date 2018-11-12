@@ -4,13 +4,14 @@
 
 <head>
     <title>Applications</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Ressources/css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Ressources/css/styles.css"/>
 </head>
 <body>
 <nav>
     <a class="links" href="${pageContext.request.contextPath}/profil">Profil</a>
-    <a class="links" href="${pageContext.request.contextPath}/view">Applications</a>
-    <a class="links" href="${pageContext.request.contextPath}/appregister">Add an app</a>
+    <c:if test="${admin eq 0}">
+        <a class="links" href="${pageContext.request.contextPath}/appregister">Add an app</a>
+    </c:if>
     <c:if test="${admin eq 1}">
         <a class="links" href="${pageContext.request.contextPath}/admin">Admin</a>
     </c:if>
@@ -18,11 +19,20 @@
     <a class="links" href="${pageContext.request.contextPath}/logout">Logout</a>
 </nav>
 <div class='container'>
-    <h1>Your applications:</h1>
+    <c:if test="${admin eq 0}">
+        <h2>Your applications:</h2>
+    </c:if>
+    <c:if test="${admin eq 1}">
+        <h2>Users' applications:</h2>
+    </c:if>
 
     <ul>
         <c:forEach items="${applist}" var="application">
-            <p>${application.getName()}</p> 
+            <p>${application.getName()}</p>
+            <form action="${pageContext.request.contextPath}/edit" method="post">
+                <input type="submit" value="Edit"/>
+                <input type="button" value="Delete" onclick="window.location.href='${pageContext.request.contextPath}/delete'"
+            </form>
         </c:forEach>
     </ul>
 </div>

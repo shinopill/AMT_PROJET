@@ -10,7 +10,6 @@
 <nav>
     <a class="links" href="${pageContext.request.contextPath}/profil">Profil</a>
     <a class="links" href="${pageContext.request.contextPath}/view">Applications</a>
-    <a class="links" href="${pageContext.request.contextPath}/appregister">Add an app</a>
     <c:if test="${admin eq 1}">
         <a class="links" href="${pageContext.request.contextPath}/admin">Admin</a>
     </c:if>
