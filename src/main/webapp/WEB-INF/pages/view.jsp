@@ -26,12 +26,6 @@
         </c:forEach>
     </ul>
 </div>
-    <div class='app'>
-        <p>name</p>
-        <p>description</p>
-        <p>api key</p>
-        <p>api secret</p>
-    </div>
 </div>
 </body>
 </html>
