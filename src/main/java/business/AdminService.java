@@ -2,38 +2,36 @@ package business;
 
 import javax.ejb.Stateless;
 import dao.UserDAO;
+import java.nio.charset.Charset;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Random;
 import javax.ejb.EJB;
 import model.User;
 
-/**
- *
- * @author Antoine
- */
 @Stateless
-public class AdminService implements AdminServiceLocal{
-    
+public class AdminService implements AdminServiceLocal {
+
     @EJB
     private UserDAO userDAO;
 
     @Override
     public boolean resetUserPassword(User user) {
-        
+
         try {
             User userToReset = userDAO.find(user.getEmail());
             if (userToReset == null) {
-                // L'user don't find
                 return false;
             } else {
-                // Generate a new password
+                
+                // Create a new password
+                String passwd = getRandomString();
                 
                 // Assign it to the user and to the database
-                
-                // send it
+                userDAO.updateUser(userToReset.getEmail(),"passwd", passwd);
+                // send it by mail
+                // TO DO
             }
-            
-            
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -49,12 +47,14 @@ public class AdminService implements AdminServiceLocal{
     public ArrayList<User> getDeveloppersDetails() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
-    
-    
 
-    
+    private String getRandomString() {
 
-    
+        // we generate an 8 length string
+        byte[] array = new byte[8]; 
+        new Random().nextBytes(array);
+        
+        return new String(array, Charset.forName("UTF-8"));
+    }
+
 }
