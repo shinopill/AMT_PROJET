@@ -22,7 +22,7 @@
 
     <ul>
         <c:forEach items="${applist}" var="application">
-            <p>${application.getName()}</p>
+            <p>${application.getName()}</p> 
         </c:forEach>
     </ul>
 </div>

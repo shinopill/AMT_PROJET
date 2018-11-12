@@ -29,16 +29,17 @@ public class ApplicationDAO implements ApplicationDAOLocal {
     public ArrayList<Application> getAllApplications(String email) throws SQLException {
         this.connection = dataSource.getConnection();
         ArrayList<Application> applications = new ArrayList<Application>();
-        String query = "SELECT * FROM applications WHERE appName LIKE ? ";
+        String query = "SELECT * FROM applications WHERE appOwner LIKE ? ";
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         try {
             preparedStatement =  connection.prepareStatement(query);
             preparedStatement.setString(1,email);
             resultSet = preparedStatement.executeQuery();
+
             while(resultSet.next()) {
 
-                Application app = new Application(resultSet.getString(1),resultSet.getString(2),
+                Application app = new Application(resultSet.getString(2),resultSet.getString(1),
                         resultSet.getString(5));
                 app.setKeyAPI(resultSet.getInt(3));
                 app.setKeySecret(resultSet.getInt(4));

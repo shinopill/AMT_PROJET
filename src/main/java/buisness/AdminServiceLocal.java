@@ -1,4 +1,4 @@
-package business;
+package buisness;
 
 import java.util.ArrayList;
 import model.User;

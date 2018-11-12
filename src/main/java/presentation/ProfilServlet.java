@@ -21,7 +21,7 @@ public class ProfilServlet extends javax.servlet.http.HttpServlet {
         int isAdmin = 0;
         try {
             HttpSession session = request.getSession(false);
-            user = dao.find(request.getParameter((String)session.getAttribute("email")));
+            user = dao.find((String)session.getAttribute("email"));
             isAdmin = (int)session.getAttribute("admin");
         } catch (SQLException e) {
             e.printStackTrace();

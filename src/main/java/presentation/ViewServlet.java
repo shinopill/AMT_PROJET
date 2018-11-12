@@ -23,14 +23,20 @@ public class ViewServlet extends javax.servlet.http.HttpServlet {
     @EJB
     ApplicationDAOLocal appDao;
 
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        this.doGet(request,response);
+    }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ArrayList<Application> list = null;
         int isAdmin = 0;
+        System.out.println("TEST");
         try {
             HttpSession session = request.getSession(false);
-            if(session != null && session.getAttribute("email") != null && session.getAttribute("isAdmin") != null) {
+            if(session != null && session.getAttribute("email") != null) {
+                System.out.println((String) session.getAttribute("email"));
                 list = appDao.getAllApplications((String) session.getAttribute("email"));
                 isAdmin = (int) session.getAttribute("admin");
+                System.out.println(list);
             }
         } catch (SQLException e) {
             e.printStackTrace();

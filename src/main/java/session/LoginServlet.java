@@ -53,8 +53,6 @@ public class LoginServlet extends javax.servlet.http.HttpServlet {
 
                     newSession.setAttribute("admin",isAdmin);
                     newSession.setAttribute("isDisabled",isDisabled);
-                    System.out.println(userToTest);
-                    System.out.println(userDao.getAdmin(userToTest.getEmail()));
                     if(isAdmin == 1){
                         ArrayList<User> usersArray = userDao.getAllUsers();
                         req.setAttribute("usersArray",usersArray);
@@ -67,6 +65,7 @@ public class LoginServlet extends javax.servlet.http.HttpServlet {
                     //e.sendEmail("shinopill@gmail.com","test","test");
                     req.setAttribute("admin",isAdmin);
                     ArrayList<Application> list = appDao.getAllApplications(userToTest.getEmail());
+                    System.out.println(list);
                     req.setAttribute("applist",list);
                     req.getRequestDispatcher("/WEB-INF/pages/view.jsp").forward(req, resp);
                 }else {
