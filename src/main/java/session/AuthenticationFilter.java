@@ -25,7 +25,7 @@ public class AuthenticationFilter implements Filter {
         HttpSession session = req.getSession();
         System.out.println(session);
 
-        if (session != null && session.getAttribute("email") != null && session.getAttribute("active") != null ) {   //checking whether the session exists
+        if (session != null && session.getAttribute("email") != null && session.getAttribute("isDisabled") != null && (int)session.getAttribute("isDisabled") == 0  ) {   //checking whether the session exists
             // pass the request along the filter chain
             chain.doFilter(request, response);
         } else {
@@ -33,7 +33,7 @@ public class AuthenticationFilter implements Filter {
             RequestDispatcher rd =  req.getRequestDispatcher("/index.jsp");
             rd.include(req,resp);
         }
-        */
+*/
 
         chain.doFilter(request, response);
 

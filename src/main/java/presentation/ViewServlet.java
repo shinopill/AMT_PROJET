@@ -29,8 +29,10 @@ public class ViewServlet extends javax.servlet.http.HttpServlet {
         int isAdmin = 0;
         try {
             HttpSession session = request.getSession(false);
-            list = appDao.getAllApplications((String)session.getAttribute("email"));
-            isAdmin = (int)session.getAttribute("admin");
+            if(session != null && session.getAttribute("email") != null && session.getAttribute("isAdmin") != null) {
+                list = appDao.getAllApplications((String) session.getAttribute("email"));
+                isAdmin = (int) session.getAttribute("admin");
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

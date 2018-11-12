@@ -28,6 +28,10 @@
         <servlet-name>ProfilServlet</servlet-name>
         <servlet-class>presentation.ProfilServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ApplicationServlet</servlet-name>
+        <servlet-class>presentation.ApplicationServlet</servlet-class>
+    </servlet>
 
 
 
@@ -54,6 +58,10 @@
     <servlet-mapping>
         <servlet-name>ProfilServlet</servlet-name>
         <url-pattern>/profil</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ApplicationServlet</servlet-name>
+        <url-pattern>/appregister</url-pattern>
     </servlet-mapping>
 
     <filter>

@@ -11,7 +11,8 @@ import java.util.LinkedList;
 @Local
 public interface ApplicationDAOLocal {
    ArrayList<Application> getAllApplications(String email) throws SQLException;
-   int createApp(String email, Application app) throws SQLException;
+   int find(String name);
+   int createAppIfNotExist(String email, Application app) throws SQLException;
    int deleteApp(String email, String name) throws SQLException;
    int updateDesciption(String email, String appName, String description) throws SQLException;
    int updateName(String email, String appName, String newName) throws SQLException;

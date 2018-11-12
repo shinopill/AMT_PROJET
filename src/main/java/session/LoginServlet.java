@@ -1,5 +1,6 @@
 package session;
 
+import buisness.Email;
 import dao.ApplicationDAOLocal;
 import dao.UserDAO;
 import dao.UserDAOLocal;
@@ -18,7 +19,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class LoginServlet extends javax.servlet.http.HttpServlet {
-
+    /* TODO mettre l'email chez tout le monde
+    @EJB
+    Email e;
+    */
     @EJB
     UserDAOLocal userDao;
     @EJB
@@ -44,10 +48,6 @@ public class LoginServlet extends javax.servlet.http.HttpServlet {
                     // Generate a new session
                     HttpSession newSession = req.getSession();
                     newSession.setAttribute("email", email);
-                    Cookie cookie = new Cookie("email", email);
-
-                    System.out.println(cookie.getValue());
-                    resp.addCookie(cookie);
 
                     int isAdmin = userToTest.getIsAdmin();
                     int isDisabled = userToTest.getIsDisabled();
@@ -65,6 +65,7 @@ public class LoginServlet extends javax.servlet.http.HttpServlet {
                         redirectToIndex(req,resp,message);
                     }
 
+                    //e.sendEmail("shinopill@gmail.com","test","test");
                     req.setAttribute("admin",isAdmin);
                     ArrayList<Application> list = appDao.getAllApplications(userToTest.getEmail());
                     req.setAttribute("applist",list);

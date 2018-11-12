@@ -54,9 +54,14 @@ public class ApplicationDAO implements ApplicationDAOLocal {
     }
 
     @Override
-    public int createApp(String email, Application app) throws SQLException {
+    public int find(String name) {
+        return 0;
+    }
+
+    @Override
+    public int createAppIfNotExist(String email, Application app) throws SQLException {
         this.connection = dataSource.getConnection();
-        String sql = "SELECT email FROM applications WHERE appOwner LIKE ?";
+        String sql = "SELECT * FROM applications WHERE appOwner LIKE ? AND appName LIKE ?";
         ResultSet resultSet = null;
         int result = 0;
         PreparedStatement preparedStatement    = null;
@@ -66,14 +71,14 @@ public class ApplicationDAO implements ApplicationDAOLocal {
             preparedStatement = connection.prepareStatement(sql);
 
             preparedStatement.setString(1, email);
+            preparedStatement.setString(2,app.getName());
             resultSet = preparedStatement.executeQuery();
 
             if(!resultSet.next()) {
-                String sqlAdd = "INSERT INTO applications(appName,appOwner,keyAPI,keySecret,description" +
-                        " VALUES(?,?,?,?,?);";
+                String sqlAdd = "INSERT INTO applications(appName,appOwner,keyAPI,keySecret,description) VALUES (?,?,?,?,?)";
                 preparedStatementAdd = connection.prepareStatement(sqlAdd);
-                preparedStatementAdd.setString(1, email);
-                preparedStatementAdd.setString(2, app.getName());
+                preparedStatementAdd.setString(2, email);
+                preparedStatementAdd.setString(1, app.getName());
                 preparedStatementAdd.setInt(3, app.getKeyAPI());
                 preparedStatementAdd.setInt(4, app.getKeySecret());
                 preparedStatementAdd.setString(5, app.getDescription());

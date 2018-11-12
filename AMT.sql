@@ -44,3 +44,5 @@ create table rules(
     nbPoints int,
     foreign key (appID) references applications(appName)
 );
+
+

@@ -16,10 +16,11 @@
 <nav>
     <a class="links" href="${pageContext.request.contextPath}/profil">Profil</a>
     <a class="links" href="${pageContext.request.contextPath}/view">Applications</a>
+    <a class="links" href="${pageContext.request.contextPath}/appregister">Add an app</a>
     <a class="links" href="${pageContext.request.contextPath}/admin">Admin</a>
     <a class="links" href="${pageContext.request.contextPath}/logout">Logout</a>
 </nav>
-</nav>
+
 
 <div class="container">
     <h1>Users:</h1>
