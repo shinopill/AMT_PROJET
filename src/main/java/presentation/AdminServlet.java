@@ -17,9 +17,6 @@ public class AdminServlet extends javax.servlet.http.HttpServlet {
     @EJB
     UserDAOLocal userDao;
 
-
-
-
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ArrayList<User> usersArray = null;
         try {

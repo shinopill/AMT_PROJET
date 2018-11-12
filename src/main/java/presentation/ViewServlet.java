@@ -24,7 +24,6 @@ public class ViewServlet extends javax.servlet.http.HttpServlet {
     ApplicationDAOLocal appDao;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("In view.doGet");
         ArrayList<Application> list = null;
         int isAdmin = 0;
         try {
@@ -38,7 +37,6 @@ public class ViewServlet extends javax.servlet.http.HttpServlet {
         }
         request.setAttribute("applist",list);
         request.setAttribute("admin", isAdmin);
-        System.out.println("Admin = " + isAdmin);
         request.getRequestDispatcher("/WEB-INF/pages/view.jsp").forward(request, response);
     }
 }
