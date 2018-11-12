@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>Application Registration</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Ressources/css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Ressources/css/styles.css"/>
 </head>
 
 <body>
@@ -11,21 +11,27 @@
     <a class="links" href="${pageContext.request.contextPath}/profil">Profil</a>
     <a class="links" href="${pageContext.request.contextPath}/view">Applications</a>
     <a class="links" href="${pageContext.request.contextPath}/appregister">Add an app</a>
-    <a class="links" href="${pageContext.request.contextPath}/admin">Admin</a>
+    <c:if test="${admin eq 1}">
+        <a class="links" href="${pageContext.request.contextPath}/admin">Admin</a>
+    </c:if>
     <a class="links" href="${pageContext.request.contextPath}/logout">Logout</a>
 </nav>
 
-<h2>App Registration</h2>
-Please provide the following information to register your app :
+<div class="form_div">
+    <h2>App Registration</h2>
+    Please provide the following information to register your app :
 
-<form class="registerForm" action="${pageContext.request.contextPath}/appregister" method="post">
-    <input type="text" name="appName" placeholder="App Name"/>
-    <textarea  name="descripton" placeholder="App description"></textarea>
-    <button type="submit" name="register">Register</button>
-    <c:if test="${erreur ne null}">
-        <p>${erreur}</p>
-    </c:if>
-</form>
+    <form class="registerForm" action="${pageContext.request.contextPath}/appregister" method="post">
+        <input type="text" name="appName" placeholder="App Name"/>
+        <textarea name="descripton" placeholder="App description"></textarea></br></br>
+        <input type="submit" name="Add"/>
+        <input type="button" value="Cancel" onclick="window.location.href='${pageContext.request.contextPath}/view'"/>
+        <c:if test="${erreur ne null}">
+            <p>${erreur}</p>
+        </c:if>
+    </form>
+
+</div>
 </body>
 </html>
 
