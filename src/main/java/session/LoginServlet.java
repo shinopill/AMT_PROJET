@@ -17,6 +17,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class LoginServlet extends javax.servlet.http.HttpServlet {
     /* TODO mettre l'email chez tout le monde
@@ -54,9 +55,19 @@ public class LoginServlet extends javax.servlet.http.HttpServlet {
 
                     newSession.setAttribute("admin", isAdmin);
                     newSession.setAttribute("isDisabled", isDisabled);
+                    newSession.setAttribute("pageUser",0);
+                    newSession.setAttribute("pageApp",0);
                     if (isAdmin == 1) {
+
                         ArrayList<User> usersArray = userDao.getAllUsers();
-                        req.setAttribute("usersArray", usersArray);
+                        System.out.println(usersArray);
+
+                        int nbElementToShow = usersArray.size() > User.ELEMENT_BY_PAGE ? User.ELEMENT_BY_PAGE : usersArray.size();
+                        List<User> listApp = usersArray.subList(0, nbElementToShow);
+
+                        req.setAttribute("usersArray", listApp);
+
+                        req.setAttribute("admin", isAdmin);
                         req.getRequestDispatcher("/WEB-INF/pages/admin.jsp").forward(req, resp);
                     } else if (isDisabled == 1) {
                         message = "Your account has been disabled";
@@ -66,8 +77,9 @@ public class LoginServlet extends javax.servlet.http.HttpServlet {
                         //e.sendEmail("shinopill@gmail.com","test","test");
                         req.setAttribute("admin", isAdmin);
                         ArrayList<Application> list = appDao.getAllApplications(userToTest.getEmail());
-                        System.out.println(list);
-                        req.setAttribute("applist", list);
+                        int nbElementToShow = list.size() > Application.ELEMENT_BY_PAGE ? Application.ELEMENT_BY_PAGE : list.size();
+                        List<Application> list1 = list.subList(0,nbElementToShow);
+                        req.setAttribute("applist", list1);
                         req.getRequestDispatcher("/WEB-INF/pages/view.jsp").forward(req, resp);
                     }
                 } else {

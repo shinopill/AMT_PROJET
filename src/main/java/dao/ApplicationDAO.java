@@ -26,6 +26,38 @@ public class ApplicationDAO implements ApplicationDAOLocal {
     }
 
     @Override
+    public ArrayList<Application> getAllApplications() throws SQLException {
+        this.connection = dataSource.getConnection();
+        ArrayList<Application> applications = new ArrayList<Application>();
+        String query = "SELECT * FROM applications";
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
+            preparedStatement =  connection.prepareStatement(query);
+            resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()) {
+
+                Application app = new Application(resultSet.getString(2),resultSet.getString(1),
+                        resultSet.getString(5));
+                app.setKeyAPI(resultSet.getInt(3));
+                app.setKeySecret(resultSet.getInt(4));
+                applications.add(app);
+            }
+
+            return applications;
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            connection.close();
+        }
+
+        return null;
+    }
+
+
+
+    @Override
     public ArrayList<Application> getAllApplications(String email) throws SQLException {
         this.connection = dataSource.getConnection();
         ArrayList<Application> applications = new ArrayList<Application>();
@@ -49,6 +81,8 @@ public class ApplicationDAO implements ApplicationDAOLocal {
             return applications;
         }catch (Exception e){
             e.printStackTrace();
+        }finally {
+            connection.close();
         }
 
         return null;
@@ -92,6 +126,8 @@ public class ApplicationDAO implements ApplicationDAOLocal {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            connection.close();
         }
 
         return result;
@@ -116,6 +152,8 @@ public class ApplicationDAO implements ApplicationDAOLocal {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            connection.close();
         }
 
         return result;
@@ -140,6 +178,8 @@ public class ApplicationDAO implements ApplicationDAOLocal {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            connection.close();
         }
 
         return result;
@@ -164,6 +204,8 @@ public class ApplicationDAO implements ApplicationDAOLocal {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            connection.close();
         }
 
         return result;

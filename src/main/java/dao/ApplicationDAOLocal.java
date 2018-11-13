@@ -10,6 +10,8 @@ import java.util.LinkedList;
 
 @Local
 public interface ApplicationDAOLocal {
+   ArrayList<Application> getAllApplications() throws SQLException;
+
    ArrayList<Application> getAllApplications(String email) throws SQLException;
    int find(String name);
    int createAppIfNotExist(String email, Application app) throws SQLException;

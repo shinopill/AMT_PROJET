@@ -23,8 +23,6 @@ public class ApplicationServlet extends javax.servlet.http.HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String appName = req.getParameter("appName");
         String description = req.getParameter("descripton");
-        System.out.println("TESSSSSSSSSSSSSSST");
-        System.out.println(appName + "   "+ description);
 
 
         HttpSession session = req.getSession(false);

@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Romain
-  Date: 12.11.2018
-  Time: 18:24
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -21,13 +15,16 @@
 </nav>
 
 <div class="form_div">
-    <form action="${pageContext.request.contextPath}/profil" method="post">
+    <form action="${pageContext.request.contextPath}/password" method="post">
         <h2>Enter the new password</h2>
-        <input type="password" placeholder="Old password"/>
-        <input type="password" placeholder="New password"/>
-        <input type="password" placeholder="Retype new password"/></br>
+        <input type="password" name ="oldPass" placeholder="Old password"/>
+        <input type="password" name  ="newPass" placeholder="New password"/>
+        <input type="password" name = "newPassConf" placeholder="Retype new password"/></br>
         <input type="submit" value="Change"/>
         <input type="button" value="Cancel" onclick="window.location.href='${pageContext.request.contextPath}/profil'"/>
+        <c:if test="${erreur ne null}">
+            <p>${erreur}</p>
+        </c:if>
     </form>
 </div>
 

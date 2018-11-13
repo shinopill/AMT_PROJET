@@ -27,16 +27,39 @@
     </c:if>
 
     <ul>
-        <c:forEach items="${applist}" var="application">
-            <p>${application.getName()}</p>
-            <form action="${pageContext.request.contextPath}/edit" method="post">
-                <input type="submit" value="Edit"/>
-            </form>
-            <form action="${pageContext.request.contextPath}/deleteapp" method="post">
-                <input type="submit" value="Delete"/>
-            </form>
-        </c:forEach>
+        <table>
+            <c:forEach items="${applist}" var="application">
+                <tr>
+                    <c:if test="${admin eq 1}">
+                        <th>${application.getAppOwner()}</th>
+                    </c:if>
+                    <th>${application.getName()}</th>
+                    <th>${application.getKeyAPI()}</th>
+                    <th>${application.getKeySecret()}</th>
+                    <th>${applist.size()}</th>
+                    <c:if test="${admin eq 0}">
+                        <th>
+                            <form action="${pageContext.request.contextPath}/view" method="post">
+                                <input type="submit" name="edit" value="Edit"/>
+                            </form>
+                        </th>
+                        <th>
+                            <form action="${pageContext.request.contextPath}/view" method="post">
+                                <input type="submit" name="delete" value="Delete"/>
+                            </form>
+                        </th>
+                    </c:if>
+                </tr>
+            </c:forEach>
+
+        </table>
     </ul>
+    <c:if test="${pageApp ne 0}">
+        <a class="links" href="${pageContext.request.contextPath}/view" onclick=<%session.setAttribute("pageApp",(int)session.getAttribute("pageApp")-1);%>>Previous</a>
+    </c:if>
+    <c:if test="${applist.size() eq 10}">
+        <a class="links" href="${pageContext.request.contextPath}/view" onclick=<%session.setAttribute("pageApp",(int)session.getAttribute("pageApp")+1);%>>Next</a>
+    </c:if>
 </div>
 </div>
 </body>

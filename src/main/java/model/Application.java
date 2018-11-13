@@ -4,6 +4,7 @@ import java.util.UUID;
 
 public class Application {
 
+   public static int ELEMENT_BY_PAGE = 10;
    private String appOwner;
    private String name;
    private String description;
@@ -23,6 +24,10 @@ public class Application {
    
    public String getName() { return name; }
    public String getDescription() { return description; }
+
+   public String getAppOwner() {
+      return appOwner;
+   }
 
    public int getKeyAPI() {
       return keyAPI;

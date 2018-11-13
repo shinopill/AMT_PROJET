@@ -45,6 +45,8 @@ public class UserDAO implements UserDAOLocal {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            connection.close();
         }
 
         return null;
@@ -102,7 +104,7 @@ public class UserDAO implements UserDAOLocal {
 
     @Override
     public int updateUser(String userMail, String colonne, String value) {
-        
+ /*
         String sql = "UPDATE dev_users set ?=? WHERE email LIKE ? ;";
         int result = 0;
         
@@ -123,6 +125,35 @@ public class UserDAO implements UserDAOLocal {
 
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+*/
+        return 0;
+    }
+
+    @Override
+    public int updatePassword(String userMail, String value) throws SQLException {
+
+        String sql = "UPDATE dev_users set passwd=? WHERE email LIKE ? ;";
+        int result = 0;
+        connection = dataSource.getConnection();
+        try {
+
+
+
+            PreparedStatement preparedStatement = null;
+
+            preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setString(1, value);
+            preparedStatement.setString(2, userMail);
+            preparedStatement.executeUpdate();
+
+            result = 1;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }finally {
+            connection.close();
         }
 
         return result;
@@ -149,6 +180,8 @@ public class UserDAO implements UserDAOLocal {
 
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            connection.close();
         }
 
         return result;
@@ -170,6 +203,8 @@ public class UserDAO implements UserDAOLocal {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            connection.close();
         }
         return -1;
     }
@@ -191,6 +226,8 @@ public class UserDAO implements UserDAOLocal {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            connection.close();
         }
         return -1;
     }
@@ -209,6 +246,8 @@ public class UserDAO implements UserDAOLocal {
             return 1;
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            connection.close();
         }
         return -1;
     }
@@ -234,6 +273,8 @@ public class UserDAO implements UserDAOLocal {
             return users;
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            connection.close();
         }
 
         return null;
