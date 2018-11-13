@@ -25,8 +25,13 @@
     <ul>
         <c:forEach items="${users}" var="user">
             <li>${user.getId()}</li>
+            <li>${user.getIsDisabled()}</li>
             <form action="${pageContext.request.contextPath}/reset" method="post">
-                <input type="submit" value="Edit"/>h</form>
+                <input type="submit" value="Reset Password"/>
+            </form>
+            <form action="${pageContext.request.contextPath}/admin" method="post">
+                <input type="submit" value="Enable/Disable"/>
+            </form>
         </c:forEach>
     </ul>
 </div>

@@ -49,8 +49,6 @@
         <servlet-class>app.ResetPwdServlet</servlet-class>
     </servlet>
 
-
-
     <servlet-mapping>
         <servlet-name>AdminServlet</servlet-name>
         <url-pattern>/admin</url-pattern>
@@ -95,7 +93,6 @@
         <servlet-name>ResetPwdServlet</servlet-name>
         <url-pattern>/reset</url-pattern>
     </servlet-mapping>
-
 
     <filter>
         <filter-name>AuthentificationFilter</filter-name>

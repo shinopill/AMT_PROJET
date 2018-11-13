@@ -31,7 +31,9 @@
             <p>${application.getName()}</p>
             <form action="${pageContext.request.contextPath}/edit" method="post">
                 <input type="submit" value="Edit"/>
-                <input type="button" value="Delete" onclick="window.location.href='${pageContext.request.contextPath}/deleteapp'"/>
+            </form>
+            <form action="${pageContext.request.contextPath}/deleteapp" method="post">
+                <input type="submit" value="Delete"/>
             </form>
         </c:forEach>
     </ul>
