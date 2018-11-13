@@ -44,6 +44,10 @@
         <servlet-name>DeleteAppServlet</servlet-name>
         <servlet-class>app.DeleteAppServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ResetPwdServlet</servlet-name>
+        <servlet-class>app.ResetPwdServlet</servlet-class>
+    </servlet>
 
 
 
@@ -85,7 +89,11 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>DeleteAppServlet</servlet-name>
-        <url-pattern>/delete</url-pattern>
+        <url-pattern>/deleteapp</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ResetPwdServlet</servlet-name>
+        <url-pattern>/reset</url-pattern>
     </servlet-mapping>
 
 

@@ -11,4 +11,9 @@ public class EditAppServlet extends javax.servlet.http.HttpServlet {
 
         request.getRequestDispatcher("/WEB-INF/pages/editApp.jsp").forward(request, response);
     }
+
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        req.getRequestDispatcher("/WEB-INF/pages/editApp.jsp").forward(req, resp);
+    }
 }

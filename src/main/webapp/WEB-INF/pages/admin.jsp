@@ -25,6 +25,8 @@
     <ul>
         <c:forEach items="${users}" var="user">
             <li>${user.getId()}</li>
+            <form action="${pageContext.request.contextPath}/reset" method="post">
+                <input type="submit" value="Edit"/>h</form>
         </c:forEach>
     </ul>
 </div>
