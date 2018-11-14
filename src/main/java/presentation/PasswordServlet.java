@@ -18,13 +18,11 @@ public class PasswordServlet extends javax.servlet.http.HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("Password do Get");
         request.getRequestDispatcher("/WEB-INF/pages/changePassword.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("password do POST");
         String oldPass = req.getParameter("oldPass");
         String newPass = req.getParameter("newPass");
         String newPassConf = req.getParameter("newPassConf");
@@ -52,9 +50,7 @@ public class PasswordServlet extends javax.servlet.http.HttpServlet {
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }
-                    System.out.println("Changes finish, redirect to profil");
                     resp.sendRedirect("profil");
-                    //req.getRequestDispatcher("/WEB-INF/pages/profil.jsp").forward(req, resp);
                 } else {
                     req.setAttribute("erreur", "Problem while updating the password please try again later");
                     req.getRequestDispatcher("/WEB-INF/pages/changePassword.jsp").forward(req, resp);
