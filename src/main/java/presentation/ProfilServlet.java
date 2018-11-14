@@ -17,6 +17,7 @@ public class ProfilServlet extends javax.servlet.http.HttpServlet {
     UserDAOLocal dao;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("profile.doGet");
         User user = null;
         int isAdmin = 0;
         try {
@@ -27,6 +28,7 @@ public class ProfilServlet extends javax.servlet.http.HttpServlet {
             e.printStackTrace();
         }
         request.setAttribute("user", user);
+        System.out.println("User = " + user);
         request.setAttribute("admin", isAdmin);
         request.getRequestDispatcher("/WEB-INF/pages/profil.jsp").forward(request, response);
     }
