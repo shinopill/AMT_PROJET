@@ -22,13 +22,13 @@ public class EditAppServlet extends javax.servlet.http.HttpServlet {
             HttpSession session = request.getSession(false);
             String name = request.getParameter("name");
             Application app = null;
+            String description = null;
             try {
                 app = applicationDAO.find((String) session.getAttribute("email"), name);
+                app.getDescription();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-
-            String description = app.getDescription();
 
             request.setAttribute("name", name);
             request.setAttribute("description", description);
