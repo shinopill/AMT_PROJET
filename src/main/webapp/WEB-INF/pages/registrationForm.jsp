@@ -3,10 +3,10 @@
 <html>
 <head>
     <title>Registration</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Ressources/css/styles.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Ressources/css/registration.css"/>
 </head>
 <body>
-<div class="form_div">
+<div class="container">
     <h2>Registration</h2>
     Please provide the following information to register:
 
@@ -19,7 +19,7 @@
         <input type="submit" value="Register"/>
         <input type="button" value="Cancel" onclick="window.location.href='${pageContext.request.contextPath}/'"/>
         <c:if test="${erreur ne null}">
-            <p>${erreur}</p>
+            <p class="error">${erreur}</p>
         </c:if>
     </form>
 </div>

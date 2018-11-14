@@ -30,7 +30,7 @@ button {
    border: none;
    border-radius: 10px;
    cursor: pointer;
-   width: 100%;
+   
 }
 
 /* Add a hover effect for buttons */
@@ -52,7 +52,6 @@ button:hover {
    margin: auto;
    top: 30;
    right: 0;
-   bottom: 0;
    left: 0;
    width: 300px;
    border-radius: 6px;
