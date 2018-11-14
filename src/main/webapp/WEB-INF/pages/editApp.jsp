@@ -20,6 +20,5 @@
     <a class="links" href="${pageContext.request.contextPath}/logout">Logout</a>
 </nav>
 
-
 </body>
 </html>
