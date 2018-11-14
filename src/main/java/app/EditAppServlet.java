@@ -30,8 +30,10 @@ public class EditAppServlet extends javax.servlet.http.HttpServlet {
                 e.printStackTrace();
             }
 
-            request.setAttribute("name", name);
+            String description = app.getDescription();
+
             request.setAttribute("description", description);
+            request.setAttribute("name", name);
             System.out.println("Description = " + description);
 
             request.getRequestDispatcher("/WEB-INF/pages/editApp.jsp").forward(request, response);
