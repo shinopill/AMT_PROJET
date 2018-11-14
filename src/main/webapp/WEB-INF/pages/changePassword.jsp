@@ -16,12 +16,17 @@
 
 <div class="form_div">
     <form action="${pageContext.request.contextPath}/password" method="post">
+        <c:if test="${reseted ne null}">
+            <p>${erreur}</p>
+        </c:if>
         <h2>Enter the new password</h2>
         <input type="password" name ="oldPass" placeholder="Old password"/>
         <input type="password" name  ="newPass" placeholder="New password"/>
         <input type="password" name = "newPassConf" placeholder="Retype new password"/></br>
         <input type="submit" value="Change"/>
-        <input type="button" value="Cancel" onclick="window.location.href='${pageContext.request.contextPath}/profil'"/>
+        <c:if test="${isBeingReseted ne 1}">
+            <input type="button" value="Cancel" onclick="window.location.href='${pageContext.request.contextPath}/profil'"/>
+        </c:if>
         <c:if test="${erreur ne null}">
             <p>${erreur}</p>
         </c:if>

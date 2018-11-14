@@ -28,35 +28,49 @@ public class ViewServlet extends javax.servlet.http.HttpServlet {
         this.doGet(request,response);
     }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         ArrayList<Application> list = null;
         ArrayList<Application> list2 = null;
         int isAdmin = 0;
+        int nbAppShowed = 0;
         HttpSession session = request.getSession(false);
-        int nbAppShowed = (int)session.getAttribute("pageApp") * Application.ELEMENT_BY_PAGE;
+        int page = (int)session.getAttribute("pageApp");
+        System.out.println(request.getParameter("do"));
         try {
 
             if(session != null && session.getAttribute("email") != null) {
-                System.out.println((String) session.getAttribute("email"));
-                list2 = appDao.getAllApplications();
-                list = appDao.getAllApplications((String) session.getAttribute("email"));
+
+                //test for the click in next/previous
+                if(request.getParameter("do") != null) {
+                    if (request.getParameter("do").equals("next")) {
+                        System.out.println("IN next ");
+                        session.setAttribute("pageApp", page + 1);
+                    } else if (request.getParameter("do").equals("previous")) {
+                        System.out.println("In previous");
+                        session.setAttribute("pageApp", page - 1);
+                    }
+                }
+
+
+                //test for delete an app
+                if(request.getParameter("delete") != null){
+                    appDao.deleteApp((String)session.getAttribute("email"),request.getParameter("delete"));
+                }
+
+                nbAppShowed = (int)session.getAttribute("pageApp") * Application.ELEMENT_BY_PAGE;
                 isAdmin = (int) session.getAttribute("admin");
-                System.out.println(list);
+                list =  isAdmin == 1 ? appDao.getAllApplications() : appDao.getAllApplications((String) session.getAttribute("email"));
+
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        if(isAdmin == 0) {
 
             int nbAppToShow = list.size() - nbAppShowed;
             int nbElementToShow = nbAppToShow > Application.ELEMENT_BY_PAGE ? Application.ELEMENT_BY_PAGE : nbAppToShow;
             List<Application> listApp = list.subList(nbAppShowed,nbAppShowed + nbElementToShow);
             request.setAttribute("applist", listApp);
-        }else{
-            int nbAppToShow = list2.size() - nbAppShowed;
-            int nbElementToShow = nbAppToShow > Application.ELEMENT_BY_PAGE ? Application.ELEMENT_BY_PAGE : nbAppToShow;
-            List<Application> listApp = list2.subList(nbAppShowed,nbAppShowed + nbElementToShow);
-            request.setAttribute("applist", listApp);
-        }
+            session.setAttribute("appToSee",list.size() - nbAppShowed - nbElementToShow);
         request.setAttribute("admin", isAdmin);
         request.getRequestDispatcher("/WEB-INF/pages/view.jsp").forward(request, response);
     }

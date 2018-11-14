@@ -20,16 +20,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LoginServlet extends javax.servlet.http.HttpServlet {
-    /* TODO mettre l'email chez tout le monde
-    @EJB
-    Email e;
-    */
+
     @EJB
     UserDAOLocal userDao;
     @EJB
     ApplicationDAOLocal appDao;
 
     protected void doGET(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         req.getRequestDispatcher("/index.jsp").forward(req, resp);
     }
 
@@ -52,34 +50,34 @@ public class LoginServlet extends javax.servlet.http.HttpServlet {
 
                     int isAdmin = userToTest.getIsAdmin();
                     int isDisabled = userToTest.getIsDisabled();
-
+                    int isBeingReseted = userToTest.getIsBeingReseted();
                     newSession.setAttribute("admin", isAdmin);
                     newSession.setAttribute("isDisabled", isDisabled);
+                    newSession.setAttribute("isBeingReseted",isBeingReseted);
                     newSession.setAttribute("pageUser",0);
                     newSession.setAttribute("pageApp",0);
                     if (isAdmin == 1) {
-
                         ArrayList<User> usersArray = userDao.getAllUsers();
-                        System.out.println(usersArray);
-
                         int nbElementToShow = usersArray.size() > User.ELEMENT_BY_PAGE ? User.ELEMENT_BY_PAGE : usersArray.size();
                         List<User> listApp = usersArray.subList(0, nbElementToShow);
-
                         req.setAttribute("usersArray", listApp);
-
                         req.setAttribute("admin", isAdmin);
+                        newSession.setAttribute("userToSee",usersArray.size() - nbElementToShow - nbElementToShow);
                         req.getRequestDispatcher("/WEB-INF/pages/admin.jsp").forward(req, resp);
                     } else if (isDisabled == 1) {
                         message = "Your account has been disabled";
                         redirectToIndex(req, resp, message);
-                    } else {
-
-                        //e.sendEmail("shinopill@gmail.com","test","test");
+                    } else if(isBeingReseted == 1){
+                        message = "Please change your password";
+                        req.setAttribute("reseted",message);
+                        req.getRequestDispatcher("/WEB-INF/pages/changePassword.jsp").forward(req, resp);
+                    }else{
                         req.setAttribute("admin", isAdmin);
                         ArrayList<Application> list = appDao.getAllApplications(userToTest.getEmail());
                         int nbElementToShow = list.size() > Application.ELEMENT_BY_PAGE ? Application.ELEMENT_BY_PAGE : list.size();
                         List<Application> list1 = list.subList(0,nbElementToShow);
                         req.setAttribute("applist", list1);
+                        newSession.setAttribute("appToSee",list.size() - nbElementToShow - nbElementToShow);
                         req.getRequestDispatcher("/WEB-INF/pages/view.jsp").forward(req, resp);
                     }
                 } else {

@@ -235,13 +235,33 @@ public class UserDAO implements UserDAOLocal {
     @Override
     public int setActive(String email, int a) throws SQLException {
         connection = dataSource.getConnection();
-        String query = "UPDATE dev_users SET isDisabled=? FROM dev_users WHERE email LIKE ?";
+        String query = "UPDATE dev_users SET isDisabled=? WHERE email LIKE ?";
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         try {
             preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, email);
-            preparedStatement.setInt(2, a);
+            preparedStatement.setString(2, email);
+            preparedStatement.setInt(1, a);
+            preparedStatement.executeUpdate();
+            return 1;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            connection.close();
+        }
+        return -1;
+    }
+
+    @Override
+    public int setRested(String email, int a) throws SQLException {
+        connection = dataSource.getConnection();
+        String query = "UPDATE dev_users SET isBeingReseted=? WHERE email LIKE ?";
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(2, email);
+            preparedStatement.setInt(1, a);
             preparedStatement.executeUpdate();
             return 1;
         } catch (Exception e) {

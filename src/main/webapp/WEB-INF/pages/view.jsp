@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html>
 
 <head>
@@ -39,14 +40,10 @@
                     <th>${applist.size()}</th>
                     <c:if test="${admin eq 0}">
                         <th>
-                            <form action="${pageContext.request.contextPath}/view" method="post">
-                                <input type="submit" name="edit" value="Edit"/>
-                            </form>
+                            <a class="links" href="${pageContext.request.contextPath}/edit?name=${application.getName()}">Edit</a>
                         </th>
                         <th>
-                            <form action="${pageContext.request.contextPath}/view" method="post">
-                                <input type="submit" name="delete" value="Delete"/>
-                            </form>
+                            <a class="links" href="${pageContext.request.contextPath}/view?delete=${application.getName()}" >Delete</a>
                         </th>
                     </c:if>
                 </tr>
@@ -55,10 +52,10 @@
         </table>
     </ul>
     <c:if test="${pageApp ne 0}">
-        <a class="links" href="${pageContext.request.contextPath}/view" onclick=<%session.setAttribute("pageApp",(int)session.getAttribute("pageApp")-1);%>>Previous</a>
+        <a class="links" href="${pageContext.request.contextPath}/view?do=previous" >Previous</a>
     </c:if>
-    <c:if test="${applist.size() eq 10}">
-        <a class="links" href="${pageContext.request.contextPath}/view" onclick=<%session.setAttribute("pageApp",(int)session.getAttribute("pageApp")+1);%>>Next</a>
+    <c:if test="${appToSee ne 0}">
+        <a class="links" href="${pageContext.request.contextPath}/view?do=next">Next</a>
     </c:if>
 </div>
 </div>

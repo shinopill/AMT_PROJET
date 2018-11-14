@@ -54,6 +54,11 @@ public class PasswordServlet extends javax.servlet.http.HttpServlet {
                 }
 
                 if (ok == 1) {
+                    try {
+                        userDao.setRested(user.getEmail(),0);
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
                     req.getRequestDispatcher("/WEB-INF/pages/profil.jsp").forward(req, resp);
                 } else {
                     req.setAttribute("erreur", "Problem while updating the password please try again later");

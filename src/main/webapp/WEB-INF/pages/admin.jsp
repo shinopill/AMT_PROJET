@@ -22,25 +22,21 @@
                     <th>${user.getEmail()}</th>
                     <th>${user.getIsDisabled()}</th>
                     <th>
-                        <form action="${pageContext.request.contextPath}/reset" method="post">
-                            <input type="submit" value="Reset Password"/>
-                        </form>
+                        <a class="links" href="${pageContext.request.contextPath}/admin?reset=${user.getEmail()}">reset password</a>
                     </th>
                     <th>
-                        <form action="${pageContext.request.contextPath}/admin" method="post">
-                            <input type="submit" value="Enable/Disable"/>
-                        </form>
+                        <a class="links" href="${pageContext.request.contextPath}/admin?disable=${user.getEmail()}">disable/enable user</a>
                     </th>
                 </tr>
             </c:forEach>
 
         </table>
     </ul>
-    <c:if test="${pageApp ne 0}">
-        <a class="links" href="${pageContext.request.contextPath}/admin" onclick=<%session.setAttribute("pageUser",(int)session.getAttribute("pageUser")-1);%>>Previous</a>
+    <c:if test="${pageUser ne 0}">
+        <a class="links" href="${pageContext.request.contextPath}/admin?do=previous" >Previous</a>
     </c:if>
-    <c:if test="${usersArray.size() eq 10}">
-        <a class="links" href="${pageContext.request.contextPath}/admin" onclick=<%session.setAttribute("pageUser",(int)session.getAttribute("pageUser")+1);%>>Next</a>
+    <c:if test="${userToSee ne 0}">
+        <a class="links" href="${pageContext.request.contextPath}/admin?do=next">Next</a>
     </c:if>
 
 
