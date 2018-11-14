@@ -25,12 +25,10 @@ public class EditAppServlet extends javax.servlet.http.HttpServlet {
             String description = null;
             try {
                 app = applicationDAO.find((String) session.getAttribute("email"), name);
-                app.getDescription();
+                description = app.getDescription();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-
-            String description = app.getDescription();
 
             request.setAttribute("description", description);
             request.setAttribute("name", name);

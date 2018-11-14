@@ -8,25 +8,26 @@
 </head>
 <body>
 <nav>
+
+    <c:if test="${reseted eq null}">
     <a class="links" href="${pageContext.request.contextPath}/profil">Profil</a>
     <a class="links" href="${pageContext.request.contextPath}/view">Applications</a>
+    </c:if>
     <c:if test="${admin eq 0}">
         <a class="links" href="${pageContext.request.contextPath}/appregister">Add an app</a>
-    </c:if>    <a class="links" href="${pageContext.request.contextPath}/logout">Logout</a>
+    </c:if>
+    <a class="links" href="${pageContext.request.contextPath}/logout">Logout</a>
 </nav>
 
 <div class="form_div">
     <form action="${pageContext.request.contextPath}/password" method="post">
-        <c:if test="${reseted ne null}">
-            <p>${erreur}</p>
-        </c:if>
         <h2>Enter the new password</h2>
         <input type="password" name ="oldPass" placeholder="Old password"/>
         <input type="password" name  ="newPass" placeholder="New password"/>
         <input type="password" name = "newPassConf" placeholder="Retype new password"/></br>
         <input type="submit" value="Change"/>
         <c:if test="${isBeingReseted ne 1}">
-            <input type="button" value="Cancel" onclick="window.location.href='${pageContext.request.contextPath}/profil'"/>
+            <input type="button" value="Cancel" onclick="window.location.href='${pageContext.request.contextPath}/view'"/>
         </c:if>
         <c:if test="${erreur ne null}">
             <p>${erreur}</p>
