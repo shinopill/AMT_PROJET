@@ -39,12 +39,12 @@
                     <th>${applist.size()}</th>
                     <c:if test="${admin eq 0}">
                         <th>
-                            <form action="${pageContext.request.contextPath}/view" method="post">
+                            <form action="${pageContext.request.contextPath}/edit" method="post">
                                 <input type="submit" name="edit" value="Edit"/>
                             </form>
                         </th>
                         <th>
-                            <form action="${pageContext.request.contextPath}/view" method="post">
+                            <form action="${pageContext.request.contextPath}/deleteapp" method="post">
                                 <input type="submit" name="delete" value="Delete"/>
                             </form>
                         </th>
