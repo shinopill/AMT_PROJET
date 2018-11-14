@@ -22,17 +22,13 @@ public class PasswordServlet extends javax.servlet.http.HttpServlet {
 
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         request.getRequestDispatcher("/WEB-INF/pages/changePassword.jsp").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("IN doPOST password");
-
         String oldPass = req.getParameter("oldPass");
         String newPass = req.getParameter("newPass");
         String newPassConf = req.getParameter("newPassConf");
-
 
         HttpSession session = req.getSession(false);
         if (session != null && session.getAttribute("email") != null) {
@@ -42,10 +38,8 @@ public class PasswordServlet extends javax.servlet.http.HttpServlet {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-            System.out.println(user.getPassword());
-            System.out.println(newPass + "    " + oldPass + "    " + newPassConf);
+
             if(user != null && user.getPassword().equals(oldPass) && newPass.equals(newPassConf)) {
-                System.out.println(newPass);
                 int ok = 0;
                 try {
                     ok = userDao.updatePassword((String) session.getAttribute("email"), newPass);
@@ -72,5 +66,4 @@ public class PasswordServlet extends javax.servlet.http.HttpServlet {
             req.getRequestDispatcher("/index.jsp").forward(req, resp);
         }
     }
-
 }

@@ -15,15 +15,12 @@ import java.sql.SQLException;
 
 public class ApplicationServlet extends javax.servlet.http.HttpServlet {
     @EJB
-    UserDAOLocal userDao;
-    @EJB
     ApplicationDAOLocal appDao;
     @Override
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String appName = req.getParameter("appName");
         String description = req.getParameter("descripton");
-
 
         HttpSession session = req.getSession(false);
         if (session != null && session.getAttribute("email") != null) {
@@ -45,7 +42,6 @@ public class ApplicationServlet extends javax.servlet.http.HttpServlet {
             req.getRequestDispatcher("/index.jsp").forward(req, resp);
         }
     }
-
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

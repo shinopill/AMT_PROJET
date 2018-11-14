@@ -40,14 +40,6 @@
         <servlet-name>EditAppServlet</servlet-name>
         <servlet-class>app.EditAppServlet</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>DeleteAppServlet</servlet-name>
-        <servlet-class>app.DeleteAppServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ResetPwdServlet</servlet-name>
-        <servlet-class>app.ResetPwdServlet</servlet-class>
-    </servlet>
 
     <servlet-mapping>
         <servlet-name>AdminServlet</servlet-name>
@@ -84,14 +76,6 @@
     <servlet-mapping>
         <servlet-name>EditAppServlet</servlet-name>
         <url-pattern>/edit</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>DeleteAppServlet</servlet-name>
-        <url-pattern>/deleteapp</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ResetPwdServlet</servlet-name>
-        <url-pattern>/reset</url-pattern>
     </servlet-mapping>
 
     <filter>

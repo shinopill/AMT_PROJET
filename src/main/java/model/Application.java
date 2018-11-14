@@ -18,8 +18,8 @@ public class Application {
       this.description = description;
       
       // create unique number or something else with keyAPI et keySecret
-      keyAPI = UUID.randomUUID().hashCode();  // change this
-      keySecret =  UUID.randomUUID().hashCode(); // change this
+      keyAPI = UUID.randomUUID().hashCode();
+      keySecret =  UUID.randomUUID().hashCode();
    }
    
    public String getName() { return name; }
@@ -46,5 +46,4 @@ public class Application {
    public void setKeySecret(int keySecret) {
       this.keySecret = keySecret;
    }
-
 }
