@@ -1,7 +1,6 @@
 package app;
 
-import dao.ApplicationDAO;
-import dao.UserDAO;
+import dao.ApplicationDAOLocal;
 import model.Application;
 
 import javax.ejb.EJB;
@@ -15,16 +14,16 @@ import java.sql.SQLException;
 public class EditAppServlet extends javax.servlet.http.HttpServlet {
 
     @EJB
-    ApplicationDAO applicationDAO;
+    ApplicationDAOLocal applicationDAO;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        if(request.getParameter("name") != null){
+        if (request.getParameter("name") != null) {
             HttpSession session = request.getSession(false);
             String name = request.getParameter("name");
             Application app = null;
             try {
-                app = applicationDAO.find((String)session.getAttribute("email"), name);
+                app = applicationDAO.find((String) session.getAttribute("email"), name);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -33,15 +32,28 @@ public class EditAppServlet extends javax.servlet.http.HttpServlet {
 
             request.setAttribute("name", name);
             request.setAttribute("description", description);
+            System.out.println("Description = " + description);
 
             request.getRequestDispatcher("/WEB-INF/pages/editApp.jsp").forward(request, response);
-        }else{
+        } else {
             request.getRequestDispatcher("/WEB-INF/pages/view.jsp").forward(request, response);
 
         }
     }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        if (req.getParameter("oldname") != null) {
+            HttpSession session = req.getSession(false);
+            String email = (String) session.getAttribute("email");
+            String newName = req.getParameter("appName");
+            String description = req.getParameter("description");
+            try {
+                applicationDAO.updateName(email, req.getParameter("oldname"), newName);
+                applicationDAO.updateDesciption(email, newName, description);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        req.getRequestDispatcher("/WEB-INF/pages/view.jsp").forward(req, resp);
     }
 }

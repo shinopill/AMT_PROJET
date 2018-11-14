@@ -33,7 +33,6 @@ public class LoginServlet extends javax.servlet.http.HttpServlet {
 
     // Source for session management; https://medium.com/@kasunpdh/session-management-in-java-using-servlet-filters-and-cookies-7c536b40448f
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("In login.Post");
         String email = req.getParameter("Email");
         String password = req.getParameter("Password");
         String message = "";
