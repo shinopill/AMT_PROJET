@@ -1,7 +1,6 @@
 package dao;
 
 import model.Application;
-import model.User;
 
 import javax.annotation.Resource;
 import javax.ejb.Stateless;
@@ -11,7 +10,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 @Stateless
 public class ApplicationDAO implements ApplicationDAOLocal {
@@ -89,8 +87,40 @@ public class ApplicationDAO implements ApplicationDAOLocal {
     }
 
     @Override
-    public int find(String name) {
-        return 0;
+    public Application find(String email, String name) throws SQLException {
+        this.connection = dataSource.getConnection();
+        String sql = "SELECT * FROM applications WHERE appOwner LIKE ? AND appName LIKE ?";
+        ResultSet resultSet = null;
+        int result = 0;
+        PreparedStatement preparedStatement    = null;
+        PreparedStatement preparedStatementAdd = null;
+
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setString(1, email);
+            preparedStatement.setString(2,name);
+            resultSet = preparedStatement.executeQuery();
+
+            if(resultSet.next()) {
+                        Application app = new Application(resultSet.getString(2),resultSet.getString(1),
+                        resultSet.getString(5));
+                app.setKeyAPI(resultSet.getInt(3));
+                app.setKeySecret(resultSet.getInt(4));
+               return app;
+
+            }else {
+                result = 0;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            connection.close();
+        }
+
+        return null;
+
     }
 
     @Override
