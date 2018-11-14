@@ -18,6 +18,8 @@ public class EditAppServlet extends javax.servlet.http.HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        // Get the information in the URL to get the app informations and fill the app name and description field
+        // If this page is accessed without having an app name in the URL, return to view.jsp
         if (request.getParameter("name") != null) {
             HttpSession session = request.getSession(false);
             String name = request.getParameter("name");
@@ -32,7 +34,6 @@ public class EditAppServlet extends javax.servlet.http.HttpServlet {
 
             request.setAttribute("description", description);
             request.setAttribute("name", name);
-            System.out.println("Description = " + description);
 
             request.getRequestDispatcher("/WEB-INF/pages/editApp.jsp").forward(request, response);
         } else {
@@ -42,18 +43,31 @@ public class EditAppServlet extends javax.servlet.http.HttpServlet {
     }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        // Update the app info in the db to match the new ones if fields are corrects
+        // If the name is to long or already taken, get back on the edit page with initial app info
         if (req.getParameter("oldname") != null) {
             HttpSession session = req.getSession(false);
             String email = (String) session.getAttribute("email");
             String newName = req.getParameter("appName");
             String description = req.getParameter("description");
+            int ok = 1;
             try {
-                applicationDAO.updateName(email, req.getParameter("oldname"), newName);
-                applicationDAO.updateDesciption(email, newName, description);
+                ok &= applicationDAO.updateName(email, req.getParameter("oldname"), newName);
+                ok &= applicationDAO.updateDesciption(email, newName, description);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+
+            // Check if on of the updates failed
+            if(ok != 1){
+                req.setAttribute("erreur", "Invalid name (to long or already taken)");
+                req.setAttribute("name", req.getParameter("oldname"));
+                req.setAttribute("description", description);
+                req.getRequestDispatcher("/WEB-INF/pages/editApp.jsp").forward(req, resp);
+            }else{
+                req.getRequestDispatcher("/WEB-INF/pages/view.jsp").forward(req, resp);
+            }
         }
-        req.getRequestDispatcher("/WEB-INF/pages/view.jsp").forward(req, resp);
     }
 }

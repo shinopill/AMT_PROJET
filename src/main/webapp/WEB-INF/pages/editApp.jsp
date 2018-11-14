@@ -24,7 +24,7 @@
     <h2>Edit App</h2>
 
     <form class="registerForm" action="${pageContext.request.contextPath}/edit?oldname=${name}" method="post">
-        <input type="text" name="appName" placeholder="App Name" value="${name}"/>
+        <input type="text" name="appName" placeholder="App Name (max 20 chars)" value="${name}"/>
         <textarea class="text_area" name="description" placeholder="App description">${description}</textarea></br></br>
         <input type="submit" name="Edit"/>
         <input type="button" value="Cancel" onclick="window.location.href='${pageContext.request.contextPath}/view'"/>

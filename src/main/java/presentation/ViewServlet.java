@@ -48,7 +48,6 @@ public class ViewServlet extends javax.servlet.http.HttpServlet {
                     }
                 }
 
-
                 //test for delete an app
                 if(request.getParameter("delete") != null){
                     appDao.deleteApp((String)session.getAttribute("email"),request.getParameter("delete"));
