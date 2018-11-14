@@ -22,7 +22,7 @@
 
     <form class="registerForm" action="${pageContext.request.contextPath}/appregister" method="post">
         <input type="text" name="appName" placeholder="App Name"/>
-        <textarea name="descripton" placeholder="App description"></textarea></br></br>
+        <textarea class="text_area" name="descripton" placeholder="App description"></textarea></br></br>
         <input type="submit" name="Add"/>
         <input type="button" value="Cancel" onclick="window.location.href='${pageContext.request.contextPath}/view'"/>
         <c:if test="${erreur ne null}">

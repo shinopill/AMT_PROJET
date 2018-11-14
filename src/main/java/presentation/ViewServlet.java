@@ -35,7 +35,6 @@ public class ViewServlet extends javax.servlet.http.HttpServlet {
         int nbAppShowed = 0;
         HttpSession session = request.getSession(false);
         int page = (int)session.getAttribute("pageApp");
-        System.out.println(request.getParameter("do"));
         try {
 
             if(session != null && session.getAttribute("email") != null) {
@@ -43,10 +42,8 @@ public class ViewServlet extends javax.servlet.http.HttpServlet {
                 //test for the click in next/previous
                 if(request.getParameter("do") != null) {
                     if (request.getParameter("do").equals("next")) {
-                        System.out.println("IN next ");
                         session.setAttribute("pageApp", page + 1);
                     } else if (request.getParameter("do").equals("previous")) {
-                        System.out.println("In previous");
                         session.setAttribute("pageApp", page - 1);
                     }
                 }

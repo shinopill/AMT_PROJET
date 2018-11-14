@@ -37,7 +37,6 @@
                     <th>${application.getName()}</th>
                     <th>${application.getKeyAPI()}</th>
                     <th>${application.getKeySecret()}</th>
-                    <th>${applist.size()}</th>
                     <c:if test="${admin eq 0}">
                         <th>
                             <a class="links" href="${pageContext.request.contextPath}/edit?name=${application.getName()}">Edit</a>
