@@ -13,7 +13,7 @@
     <form action="${pageContext.request.contextPath}/register" method="post">
         <input type="text" name="firstname" placeholder="Firstname">
         <input type="text" name="lastname" placeholder="Lastname"/>
-        <input type="text" name="email" placeholder="Email"/>
+        <input type="email" name="email" placeholder="Email"/>
         <input type="password" name="password" placeholder="Password"/>
         <input type="password" name="confirmPassword" placeholder="Confirm password"></br>
         <input type="submit" value="Register"/>
