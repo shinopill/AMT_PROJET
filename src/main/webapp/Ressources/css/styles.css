@@ -50,6 +50,8 @@ nav {
     text-align: center;
 }
 
-.text_area{
-
+.text_area {
+    width: 300px;
+    height: 300px;
+    margin-top: 5px;
 }

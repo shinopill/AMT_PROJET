@@ -21,7 +21,7 @@
     Please provide the following information to register your app :
 
     <form class="registerForm" action="${pageContext.request.contextPath}/appregister" method="post">
-        <input type="text" name="appName" placeholder="App Name"/>
+        <input type="text" name="appName" placeholder="App Name (max 20 chars)"/>
         <textarea class="text_area" name="descripton" placeholder="App description"></textarea></br></br>
         <input type="submit" name="Add"/>
         <input type="button" value="Cancel" onclick="window.location.href='${pageContext.request.contextPath}/view'"/>

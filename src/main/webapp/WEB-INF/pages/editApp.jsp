@@ -25,7 +25,7 @@
 
     <form class="registerForm" action="${pageContext.request.contextPath}/edit?oldname=${name}" method="post">
         <input type="text" name="appName" placeholder="App Name" value="${name}"/>
-        <textarea class="text_area" name="description" placeholder="App description" value="${description}"></textarea></br></br>
+        <textarea class="text_area" name="description" placeholder="App description">${description}</textarea></br></br>
         <input type="submit" name="Edit"/>
         <input type="button" value="Cancel" onclick="window.location.href='${pageContext.request.contextPath}/view'"/>
         <c:if test="${erreur ne null}">

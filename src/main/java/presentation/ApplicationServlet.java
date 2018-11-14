@@ -38,7 +38,7 @@ public class ApplicationServlet extends javax.servlet.http.HttpServlet {
             if (ok == 1) {
                 req.getRequestDispatcher("/WEB-INF/pages/view.jsp").forward(req, resp);
             } else {
-                req.setAttribute("erreur", "Name already taken ");
+                req.setAttribute("erreur", "Invalid name (to long or already taken)");
                 req.getRequestDispatcher("/WEB-INF/pages/applicationForm.jsp").forward(req, resp);
             }
         }else {
