@@ -1,0 +1,58 @@
+body {
+   font-family: Verdana;
+   background: #d0e4f7; /* Old browsers */
+   background: -moz-linear-gradient(-45deg, #d0e4f7 0%, #73b1e7 24%, #0a77d5 50%, #539fe1 79%, #87bcea 100%); /* FF3.6-15 */
+   background: -webkit-linear-gradient(-45deg, #d0e4f7 0%,#73b1e7 24%,#0a77d5 50%,#539fe1 79%,#87bcea 100%); /* Chrome10-25,Safari5.1-6 */
+   background: linear-gradient(135deg, #d0e4f7 0%,#73b1e7 24%,#0a77d5 50%,#539fe1 79%,#87bcea 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d0e4f7', endColorstr='#87bcea',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+.container {
+   padding: 16px;
+   position: absolute;
+   margin: auto;
+   top: 30;
+   right: 0;
+   left: 0;
+   width: 300px;
+   border-radius: 6px;
+   background-color: #EFEFEF;
+   text-align: center;
+}
+
+input[type=text], input[type=password] {
+   width: 100%;
+   padding: 12px 20px;
+   margin: 8px 0;
+   display: inline-block;
+   border: 1px solid #ccc;
+   border-radius: 10px;
+   box-sizing: border-box;
+}
+
+input[type=submit] {
+   background-color: #4CAF50;
+   color: white;
+   padding: 14px 20px;
+   margin: 8px 0;
+   border: none;
+   border-radius: 10px;
+   cursor: pointer;
+}
+
+input[type=button] {
+   background-color: #e15454 ;
+   color: white;
+   padding: 14px 20px;
+   margin: 8px 0;
+   border: none;
+   border-radius: 10px;
+   cursor: pointer;
+}
+
+.error {
+   color:red;
+
+}
+
+
