@@ -61,7 +61,7 @@ public class LoginServlet extends javax.servlet.http.HttpServlet {
                         List<User> listApp = usersArray.subList(0, nbElementToShow);
                         req.setAttribute("usersArray", listApp);
                         req.setAttribute("admin", isAdmin);
-                        newSession.setAttribute("userToSee",usersArray.size() - nbElementToShow - nbElementToShow);
+                        newSession.setAttribute("userToSee",usersArray.size() - nbElementToShow);
                         req.getRequestDispatcher("/WEB-INF/pages/admin.jsp").forward(req, resp);
                     } else if (isDisabled == 1) {
                         message = "Your account has been disabled";
@@ -76,7 +76,7 @@ public class LoginServlet extends javax.servlet.http.HttpServlet {
                         int nbElementToShow = list.size() > Application.ELEMENT_BY_PAGE ? Application.ELEMENT_BY_PAGE : list.size();
                         List<Application> list1 = list.subList(0,nbElementToShow);
                         req.setAttribute("applist", list1);
-                        newSession.setAttribute("appToSee",list.size() - nbElementToShow - nbElementToShow);
+                        newSession.setAttribute("appToSee",list.size() - nbElementToShow);
                         req.getRequestDispatcher("/WEB-INF/pages/view.jsp").forward(req, resp);
                     }
                 } else {

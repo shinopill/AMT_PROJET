@@ -47,13 +47,22 @@ public class EditAppServlet extends javax.servlet.http.HttpServlet {
             String email = (String) session.getAttribute("email");
             String newName = req.getParameter("appName");
             String description = req.getParameter("description");
+            int ok = 1;
             try {
-                applicationDAO.updateName(email, req.getParameter("oldname"), newName);
-                applicationDAO.updateDesciption(email, newName, description);
+                ok &= applicationDAO.updateName(email, req.getParameter("oldname"), newName);
+                ok &= applicationDAO.updateDesciption(email, newName, description);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+
+            if(ok != 1){
+                req.setAttribute("erreur", "Invalid name (to long or already taken)");
+                req.setAttribute("name", req.getParameter("oldname"));
+                req.setAttribute("description", description);
+                req.getRequestDispatcher("/WEB-INF/pages/editApp.jsp").forward(req, resp);
+            }else{
+                req.getRequestDispatcher("/WEB-INF/pages/view.jsp").forward(req, resp);
+            }
         }
-        req.getRequestDispatcher("/WEB-INF/pages/view.jsp").forward(req, resp);
     }
 }
