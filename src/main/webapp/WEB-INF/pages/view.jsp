@@ -55,10 +55,12 @@
         </table>
     </ul>
     <c:if test="${pageApp ne 0}">
-        <a class="links" href="${pageContext.request.contextPath}/view" onclick=<%session.setAttribute("pageApp",(int)session.getAttribute("pageApp")-1);%>>Previous</a>
+        <a class="links" href="${pageContext.request.contextPath}/view"
+           onclick=<%session.setAttribute("pageApp", (int) session.getAttribute("pageApp") - 1);%>>Previous</a>
     </c:if>
     <c:if test="${applist.size() eq 10}">
-        <a class="links" href="${pageContext.request.contextPath}/view" onclick=<%session.setAttribute("pageApp",(int)session.getAttribute("pageApp")+1);%>>Next</a>
+        <a class="links" href="${pageContext.request.contextPath}/view"
+           onclick=<%session.setAttribute("pageApp", (int) session.getAttribute("pageApp") + 1);%>>Next</a>
     </c:if>
 </div>
 </div>
