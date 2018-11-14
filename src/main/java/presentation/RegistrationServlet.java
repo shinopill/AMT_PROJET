@@ -33,7 +33,6 @@ public class RegistrationServlet extends javax.servlet.http.HttpServlet  {
         }
         String message = "";
         if(alreadyTaken != null){
-            System.out.print(alreadyTaken);
             message = "Email already used";
             redirectToRegistartion(req,resp,message);
         }

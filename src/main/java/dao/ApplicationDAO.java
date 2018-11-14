@@ -35,7 +35,6 @@ public class ApplicationDAO implements ApplicationDAOLocal {
             resultSet = preparedStatement.executeQuery();
 
             while(resultSet.next()) {
-
                 Application app = new Application(resultSet.getString(2),resultSet.getString(1),
                         resultSet.getString(5));
                 app.setKeyAPI(resultSet.getInt(3));

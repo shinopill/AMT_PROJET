@@ -26,14 +26,8 @@ public class AdminServlet extends javax.servlet.http.HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ArrayList<User> usersArray = null;
-        try {
-            usersArray = userDao.getAllUsers();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
         HttpSession session = request.getSession(false);
         int page = (int)session.getAttribute("pageUser");
-
         //check clicked on previous/next
         if(request.getParameter("do") != null) {
             if (request.getParameter("do").equals("next")) {
@@ -62,6 +56,7 @@ public class AdminServlet extends javax.servlet.http.HttpServlet {
 
         if(request.getParameter("reset") != null) {
             String name = request.getParameter("reset");
+            System.out.println("In reset");
             int t = UUID.randomUUID().hashCode();
             try {
                 email.sendEmail(name, "password reseted", "Your new passowrd is " + t);
@@ -76,11 +71,18 @@ public class AdminServlet extends javax.servlet.http.HttpServlet {
             }
         }
 
+        try {
+            usersArray = userDao.getAllUsers();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         int nbAppShowed = (int)session.getAttribute("pageUser") * Application.ELEMENT_BY_PAGE;
         int nbAppToShow = usersArray.size() - nbAppShowed;
         int nbElementToShow = nbAppToShow > User.ELEMENT_BY_PAGE ? User.ELEMENT_BY_PAGE : nbAppToShow;
         List<User> listApp = usersArray.subList(nbAppShowed,nbAppShowed + nbElementToShow);
 
+        System.out.println(usersArray.size() - nbAppShowed - nbElementToShow);
         session.setAttribute("userToSee",usersArray.size() - nbAppShowed - nbElementToShow);
         request.setAttribute("usersArray",listApp);
         request.getRequestDispatcher("/WEB-INF/pages/admin.jsp").forward(request, response);
