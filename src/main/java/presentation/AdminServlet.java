@@ -46,6 +46,26 @@ public class AdminServlet extends javax.servlet.http.HttpServlet {
             admin.changeActive(name);
         }
 
+        // Check if clicked on delete; delete the user if it's the case
+        if(request.getParameter("delete") != null){
+            String email = request.getParameter("delete");
+            try {
+                userDao.deleteUser(email);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        // Check if clicked on promote/demote; inverse admin status if it's the case
+        if(request.getParameter("up") != null){
+            String email = request.getParameter("up");
+            try {
+                userDao.setAdmin(email, userDao.getAdmin(email) == 0 ? 1 : 0);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
         // Check if clicked on reset Password; If it's the case, send a mail to the user with his new password
         if (request.getParameter("reset") != null) {
             String name = request.getParameter("reset");

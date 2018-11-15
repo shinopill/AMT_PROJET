@@ -35,7 +35,6 @@ public class RegistrationServlet extends javax.servlet.http.HttpServlet  {
 
         if(firstname.equals("") || lastname.equals("") || email.equals("") || password.equals("") || confirmPwd.equals("")){
             message = "Not all field filled";
-
             redirectToRegistartion(req, resp, message);
         }
 
