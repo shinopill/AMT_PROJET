@@ -31,13 +31,19 @@ public class RegistrationServlet extends javax.servlet.http.HttpServlet  {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        String message = "";
+        String message;
+
+        if(firstname.equals("") || lastname.equals("") || email.equals("") || password.equals("") || confirmPwd.equals("")){
+            message = "Not all field filled";
+            redirectToRegistartion(req, resp, message);
+        }
+
         if(alreadyTaken != null){
             message = "Email already used";
             redirectToRegistartion(req,resp,message);
         }
 
-        if(!password.equals("") && !confirmPwd.equals("") && password.equals(confirmPwd)){
+        if(password.equals(confirmPwd)){
             User user = new User(firstname,lastname,email,password,0,0,0);
             int db = 0;
             try {
@@ -59,7 +65,7 @@ public class RegistrationServlet extends javax.servlet.http.HttpServlet  {
     }
 
     private void redirectToRegistartion(HttpServletRequest req,HttpServletResponse resp,String message) throws ServletException, IOException {
-        req.setAttribute("erreur",message);
+        req.setAttribute("erreur", message);
         req.getRequestDispatcher("/WEB-INF/pages/registrationForm.jsp").forward(req, resp);
 
     }

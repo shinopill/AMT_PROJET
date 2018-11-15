@@ -58,6 +58,7 @@ body {
    top: 30;
    left: 10%;
    width: 300px;
+   border: solid black 2px;
    border-radius: 10px;
    background-color: #EFEFEF;
    ;}

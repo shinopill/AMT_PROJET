@@ -24,6 +24,7 @@ public interface UserDAOLocal {
    User find(String userMail) throws SQLException;
    int getAdmin(String username) throws SQLException;
    int getActive(String username) throws SQLException;
+   int setAdmin(String username, int a) throws SQLException;
 
     int setRested(String email, int a) throws SQLException;
 

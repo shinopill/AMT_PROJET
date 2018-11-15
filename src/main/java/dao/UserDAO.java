@@ -1,11 +1,9 @@
 package dao;
 
-import javax.annotation.Resource;
-import javax.ejb.ApplicationException;
-import javax.ejb.Stateless;
+import model.User;
 
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
+import javax.annotation.Resource;
+import javax.ejb.Stateless;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,11 +13,9 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import model.User;
-
 
 @Stateless
-public class UserDAO implements UserDAOLocal{
+public class UserDAO implements UserDAOLocal {
 
     // Add business logic below.
     @Resource(lookup = "java:/AMT")
@@ -49,7 +45,7 @@ public class UserDAO implements UserDAOLocal{
             }
         } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             connection.close();
         }
 
@@ -111,17 +107,17 @@ public class UserDAO implements UserDAOLocal{
     public ArrayList<User> getApplicationPages(int rowNumber, int limit) throws SQLException {
         this.connection = dataSource.getConnection();
         ArrayList<User> users = new ArrayList<User>();
-        String query = "SELECT * FROM dev_users ORDER BY email LIMIT ? OFFSET ?" ;
+        String query = "SELECT * FROM dev_users ORDER BY email LIMIT ? OFFSET ?";
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
 
         try {
             preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1,limit);
-            preparedStatement.setInt(2,rowNumber);
+            preparedStatement.setInt(1, limit);
+            preparedStatement.setInt(2, rowNumber);
             resultSet = preparedStatement.executeQuery();
 
-            while(resultSet.next()) {
+            while (resultSet.next()) {
                 User user = new User(resultSet.getString(1), resultSet.getString(2),
                         resultSet.getString(3), resultSet.getString(4),
                         resultSet.getInt(5), resultSet.getInt(6), resultSet.getInt(7));
@@ -132,7 +128,7 @@ public class UserDAO implements UserDAOLocal{
             return users;
         } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             connection.close();
         }
 
@@ -147,20 +143,21 @@ public class UserDAO implements UserDAOLocal{
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         try {
-            preparedStatement =  connection.prepareStatement(query);
-                        resultSet = preparedStatement.executeQuery();
+            preparedStatement = connection.prepareStatement(query);
+            resultSet = preparedStatement.executeQuery();
 
-            if(resultSet.next()) {
-               return resultSet.getInt(1);
+            if (resultSet.next()) {
+                return resultSet.getInt(1);
             }
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             connection.close();
         }
         return 0;
     }
+
     @Override
     public int updateUser(String userMail, String colonne, String value) {
  /*
@@ -198,7 +195,6 @@ public class UserDAO implements UserDAOLocal{
         try {
 
 
-
             PreparedStatement preparedStatement = null;
 
             preparedStatement = connection.prepareStatement(sql);
@@ -211,7 +207,7 @@ public class UserDAO implements UserDAOLocal{
 
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }finally {
+        } finally {
             connection.close();
         }
 
@@ -239,7 +235,7 @@ public class UserDAO implements UserDAOLocal{
 
         } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             connection.close();
         }
 
@@ -262,7 +258,7 @@ public class UserDAO implements UserDAOLocal{
             }
         } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             connection.close();
         }
         return -1;
@@ -285,7 +281,7 @@ public class UserDAO implements UserDAOLocal{
             }
         } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             connection.close();
         }
         return -1;
@@ -305,7 +301,7 @@ public class UserDAO implements UserDAOLocal{
             return 1;
         } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             connection.close();
         }
         return -1;
@@ -325,7 +321,7 @@ public class UserDAO implements UserDAOLocal{
             return 1;
         } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             connection.close();
         }
         return -1;
@@ -352,10 +348,29 @@ public class UserDAO implements UserDAOLocal{
             return users;
         } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             connection.close();
         }
 
         return null;
+    }
+
+    public int setAdmin(String email, int a) throws SQLException {
+        connection = dataSource.getConnection();
+        String query = "UPDATE dev_users SET isAdmin=? WHERE email LIKE ?";
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(2, email);
+            preparedStatement.setInt(1, a);
+            preparedStatement.executeUpdate();
+            return 1;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            connection.close();
+        }
+        return -1;
     }
 }
