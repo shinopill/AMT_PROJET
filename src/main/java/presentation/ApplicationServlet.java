@@ -22,7 +22,6 @@ public class ApplicationServlet extends javax.servlet.http.HttpServlet {
         String appName = req.getParameter("appName");
         String description = req.getParameter("descripton");
 
-        System.out.println(appName + description);
         HttpSession session = req.getSession(false);
         if (session != null && session.getAttribute("email") != null) {
             int ok = 0;

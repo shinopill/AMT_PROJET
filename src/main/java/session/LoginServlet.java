@@ -58,10 +58,8 @@ public class LoginServlet extends javax.servlet.http.HttpServlet {
 
                     if (isAdmin == 1) {
                         int size = userDao.getSize();
-                        System.out.println(userDao.getSize());
                         int nbElementToShow = size > User.ELEMENT_BY_PAGE ? User.ELEMENT_BY_PAGE : size;
                         List<User> listApp = userDao.getApplicationPages(0,nbElementToShow);
-                        System.out.println(listApp);
                         req.setAttribute("usersArray", listApp);
                         req.setAttribute("admin", isAdmin);
                         newSession.setAttribute("userToSee",size - nbElementToShow);
@@ -77,7 +75,6 @@ public class LoginServlet extends javax.servlet.http.HttpServlet {
                     }else{
                         req.setAttribute("admin", isAdmin);
                         int size = appDao.getSize(userToTest.getEmail());
-                        System.out.println(size);
                         int nbElementToShow = size > Application.ELEMENT_BY_PAGE ? Application.ELEMENT_BY_PAGE : size;
                         ArrayList<Application> list = appDao.getApplicationPages(userToTest.getEmail(),0,nbElementToShow);
                         req.setAttribute("applist", list);
