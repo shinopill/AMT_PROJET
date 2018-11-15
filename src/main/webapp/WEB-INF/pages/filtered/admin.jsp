@@ -23,7 +23,12 @@
             <c:forEach items="${usersArray}" var="user">
                 <tr>
                     <th>${user.getEmail()}</th>
-                    <th>${user.getIsDisabled()}</th>
+                    <c:if test="${user.getIsDisabled() eq 1}">
+                        <th>disabled</th>
+                    </c:if>
+                    <c:if test="${user.getIsDisabled() eq 0}">
+                        <th>enabled</th>
+                    </c:if>
                     <th>
                         <a class="links" href="${pageContext.request.contextPath}/filtered/admin?reset=${user.getEmail()}">reset password</a>
                     </th>
