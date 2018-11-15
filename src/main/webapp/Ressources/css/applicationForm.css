@@ -53,13 +53,14 @@ body {
 }
 .container {
   padding: 16px;
-   position: absolute;
+   position: fixed;
    margin: auto;
    top: 30;
    left: 10%;
    width: 300px;
    border-radius: 10px;
    background-color: #EFEFEF;
+  border: solid black 2px;
    ;}
 
 
@@ -87,7 +88,8 @@ input[type=button] {
    background-color: #e15454 ;
    color: white;
    padding: 14px 20px;
-   margin: 8px 0;
+   margin: 8px 0 0 40%;
+  ;
    border: none;
    border-radius: 10px;
    cursor: pointer;
@@ -96,7 +98,7 @@ input[type=button] {
 textarea {
   resize:none;
   border-radius:10px;
-  width:95%;
+  width:98%;
 }
 
 .error {
@@ -105,4 +107,16 @@ textarea {
 
 h2 {
   text-align:center;
+}
+input[type=submit]:hover {
+  background-color: #399948;
+  
+}
+
+input[type=button]:hover {
+  background-color: #D34949;
+}
+
+.error {
+  color:red;
 }

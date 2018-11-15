@@ -1,67 +1,101 @@
 body {
    font-family: Verdana;
-    background: #d0e4f7; /* Old browsers */
+   background: #d0e4f7; /* Old browsers */
    background: -moz-linear-gradient(-45deg, #d0e4f7 0%, #73b1e7 24%, #0a77d5 50%, #539fe1 79%, #87bcea 100%); /* FF3.6-15 */
    background: -webkit-linear-gradient(-45deg, #d0e4f7 0%,#73b1e7 24%,#0a77d5 50%,#539fe1 79%,#87bcea 100%); /* Chrome10-25,Safari5.1-6 */
    background: linear-gradient(135deg, #d0e4f7 0%,#73b1e7 24%,#0a77d5 50%,#539fe1 79%,#87bcea 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-   
+
 }
 
 .sidebar {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 0;
-  width: 7%;
-  height: 100%;
-  padding: 20px;
-  background-color: #31283e;
-  transition: all 300ms ease-in-out;
-  
+   position: absolute;
+   top: 0;
+   left: 0;
+   z-index: 0;
+   width: 7%;
+   height: 100%;
+   padding: 20px;
+   background-color: #31283e;
+   transition: all 300ms ease-in-out;
+
 }
 
 .sidebar ul {
-  list-style: none;
-  text-decoration: none;
-  margin: 0;
-  padding: 0;
+   list-style: none;
+   text-decoration: none;
+   margin: 0;
+   padding: 0;
 }
 
 .sidebar ul li {
-  cursor: pointer;
-  padding: 18px 0;
-  border-bottom: 1px solid #EEEEEE;
-  color: rgba(244,244,244,0.7);
-  text-decoration: none;
+   cursor: pointer;
+   padding: 18px 0;
+   border-bottom: 1px solid #EEEEEE;
+   color: rgba(244,244,244,0.7);
+   text-decoration: none;
 }
 
 .sidebar ul li:last-child {
-  ;
+   ;
 }
 
 .sidebar ul li:hover {
-  color:#000000;
+   color:#000000;
 }
 .links {
-  text-decoration:none;
-  color: #EFEFEF;
-  
+   text-decoration:none;
+   color: #EFEFEF;
+
 }
 
 .links:hover {
-  color:#454545;
+   color:#454545;
 }
 .container {
-  padding: 16px;
+   padding: 16px;
    position: absolute;
    margin: auto;
    top: 30;
    left: 10%;
-   width: 300px;
    border-radius: 10px;
+  border:solid #222222 2px;
    background-color: #EFEFEF;
-   ;}
+   ;
+}
+table {
+   border-collapse: collapse;
+   width: 100%;
+   border-bottom: solid #AAAAAA 1px;
+}
 
+th, td {
+   text-align: left;
+   padding: 8px;
+}
 
+tr:nth-child(even){background-color: #DDDDDD;}
 
+.table-links {
+  text-decoration:none;
+  color: red;
+}
+
+.table-links:hover {
+  color: #d43830;
+}
+
+input[type=submit]:hover {
+  background-color: #1887df;
+  
+}
+
+input[type=submit] {
+   background-color: #20abff;
+   color: white;
+   padding: 14px 20px;
+   margin: 8px 0;
+   border: none;
+   border-radius: 10px;
+   cursor: pointer;
+}
 
