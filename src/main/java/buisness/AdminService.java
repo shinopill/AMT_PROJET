@@ -1,59 +1,57 @@
 package buisness;
 
-import dao.UserDAO;
-import java.nio.charset.Charset;
+
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Random;
+import java.util.UUID;
+import dao.UserDAOLocal;
 
-import model.User;
+import javax.ejb.*;
+import javax.mail.MessagingException;
+import javax.transaction.Transactional;
 
 
-public class AdminService implements AdminServiceLocal {
+@Stateless
+public class AdminService extends RuntimeException implements AdminServiceLocal   {
 
-
-    private UserDAO userDAO;
+    @EJB
+    Email email;
+    @EJB
+    UserDAOLocal userDao;
 
     @Override
-    public boolean resetUserPassword(User user) {
+    public void resetPassword(String name){
+        int t = UUID.randomUUID().hashCode();
 
         try {
-            User userToReset = userDAO.find(user.getEmail());
-            if (userToReset == null) {
-                return false;
-            } else {
-                
-                // Create a new password
-                String passwd = getRandomString();
-                
-                // Assign it to the user and to the database
-                userDAO.updateUser(userToReset.getEmail(),"passwd", passwd);
-                // send it by mail
-                // TO DO
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
+            userDao.updatePassword(name, String.valueOf(t));
+            userDao.setRested(name, 1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+
         }
-        return true;
+
+        try {
+            email.sendEmail(name, "Gamification engine password reset", "Your password on " +
+                    "the gamification engine app has been reset.\nYour new password is " + t +
+                    ". Please connect to the app to change it.\nBest regards,\nThe Admin");
+        } catch (MessagingException e) {
+
+        }
     }
 
     @Override
-    public boolean suspendAccount(User user) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void changeActive(String name){
+        int n = 0;
+        try {
+            n = userDao.getActive(name);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            userDao.setActive(name, n == 1 ? 0 : 1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
-
-    @Override
-    public ArrayList<User> getDeveloppersDetails() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private String getRandomString() {
-
-        // we generate an 8 length string
-        byte[] array = new byte[8]; 
-        new Random().nextBytes(array);
-        
-        return new String(array, Charset.forName("UTF-8"));
-    }
-
 }

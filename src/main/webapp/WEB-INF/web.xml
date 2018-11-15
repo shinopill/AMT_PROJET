@@ -32,12 +32,18 @@
         <servlet-name>ApplicationServlet</servlet-name>
         <servlet-class>presentation.ApplicationServlet</servlet-class>
     </servlet>
-
-
+    <servlet>
+        <servlet-name>PasswordServlet</servlet-name>
+        <servlet-class>presentation.PasswordServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditAppServlet</servlet-name>
+        <servlet-class>app.EditAppServlet</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>AdminServlet</servlet-name>
-        <url-pattern>/admin</url-pattern>
+        <url-pattern>/filtered/admin</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RegistrationServlet</servlet-name>
@@ -45,7 +51,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>PresentationServlet</servlet-name>
-        <url-pattern>/view</url-pattern>
+        <url-pattern>/filtered/view</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -57,20 +63,36 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ProfilServlet</servlet-name>
-        <url-pattern>/profil</url-pattern>
+        <url-pattern>/filtered/profil</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ApplicationServlet</servlet-name>
-        <url-pattern>/appregister</url-pattern>
+        <url-pattern>/filtered/appregister</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PasswordServlet</servlet-name>
+        <url-pattern>/filtered/password</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditAppServlet</servlet-name>
+        <url-pattern>/filtered/edit</url-pattern>
     </servlet-mapping>
 
     <filter>
         <filter-name>AuthentificationFilter</filter-name>
         <filter-class>session.AuthenticationFilter</filter-class>
     </filter>
+    <filter>
+        <filter-name>AdminFilter</filter-name>
+        <filter-class>session.AdminFilter</filter-class>
+    </filter>
 
     <filter-mapping>
         <filter-name>AuthentificationFilter</filter-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>/filtered/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <url-pattern>/filtered/admin</url-pattern>
     </filter-mapping>
 </web-app>

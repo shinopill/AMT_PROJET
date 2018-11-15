@@ -4,6 +4,7 @@ import java.util.UUID;
 
 public class Application {
 
+   public static int ELEMENT_BY_PAGE = 10;
    private String appOwner;
    private String name;
    private String description;
@@ -17,12 +18,16 @@ public class Application {
       this.description = description;
       
       // create unique number or something else with keyAPI et keySecret
-      keyAPI = UUID.randomUUID().hashCode();  // change this
-      keySecret =  UUID.randomUUID().hashCode(); // change this
+      keyAPI = UUID.randomUUID().hashCode();
+      keySecret =  UUID.randomUUID().hashCode();
    }
    
    public String getName() { return name; }
    public String getDescription() { return description; }
+
+   public String getAppOwner() {
+      return appOwner;
+   }
 
    public int getKeyAPI() {
       return keyAPI;
@@ -41,5 +46,4 @@ public class Application {
    public void setKeySecret(int keySecret) {
       this.keySecret = keySecret;
    }
-
 }

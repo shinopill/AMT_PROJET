@@ -1,35 +1,78 @@
 package presentation;
 
-import dao.UserDAO;
+import buisness.AdminServiceLocal;
+import buisness.Email;
 import dao.UserDAOLocal;
+import model.Application;
 import model.User;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 public class AdminServlet extends javax.servlet.http.HttpServlet {
 
     @EJB
     UserDAOLocal userDao;
+    @EJB
+    AdminServiceLocal admin;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        // Show the list of the users and allow the admin to reset an user password or change the account active status
         ArrayList<User> usersArray = null;
+        HttpSession session = request.getSession(false);
+        int page = (int) session.getAttribute("pageUser");
+
+        // Check if clicked on previous/next
+        if (request.getParameter("do") != null) {
+            if (request.getParameter("do").equals("next")) {
+                session.setAttribute("pageUser", page + 1);
+            } else if (request.getParameter("do").equals("previous")) {
+                session.setAttribute("pageUser", page - 1);
+            }
+        }
+
+        // Check if clicked on enable/disable; change the user's active/inactive status if it's the case
+        if (request.getParameter("disable") != null) {
+            String name = request.getParameter("disable");
+            admin.changeActive(name);
+        }
+
+        // Check if clicked on reset Password; If it's the case, send a mail to the user with his new password
+        if (request.getParameter("reset") != null) {
+            String name = request.getParameter("reset");
+            admin.resetPassword(name);
+        }
+
+
+        int size = 0;
+        // Deal with the pagination
+        int nbUserShowed = (int) session.getAttribute("pageUser") * Application.ELEMENT_BY_PAGE;
         try {
-            usersArray = userDao.getAllUsers();
+           size = userDao.getSize();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        request.setAttribute("usersArray",usersArray);
-        // System.out.print(userDao.find("Someone@mail.com"));
-        request.getRequestDispatcher("/WEB-INF/pages/admin.jsp").forward(request, response);
-    }
 
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int  nbUserToShow = size - nbUserShowed;
+        int nbElementToShow = nbUserToShow > User.ELEMENT_BY_PAGE ? User.ELEMENT_BY_PAGE : nbUserToShow;
+        List<User> listApp = null;
+        try {
+            listApp = userDao.getApplicationPages(nbUserShowed,nbElementToShow);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
+        session.setAttribute("userToSee", nbUserToShow - nbElementToShow);
+        request.setAttribute("usersArray", listApp);
+        request.getRequestDispatcher("/WEB-INF/pages/filtered/admin.jsp").forward(request, response);
     }
 }

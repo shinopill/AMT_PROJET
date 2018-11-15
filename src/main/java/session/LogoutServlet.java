@@ -13,12 +13,6 @@ public class LogoutServlet extends javax.servlet.http.HttpServlet{
         //invalidate the session if exists
         HttpSession session = req.getSession(false);
         if(session != null){
-          Cookie[] cookies =  req.getCookies();
-            for(Cookie cookie : cookies){
-                System.out.print(cookie);
-                cookie.setMaxAge(0);
-
-            }
             session.invalidate();
         }
         req.getRequestDispatcher("/index.jsp").forward(req, resp);    }

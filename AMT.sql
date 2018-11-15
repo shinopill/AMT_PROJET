@@ -45,4 +45,16 @@ create table rules(
     foreign key (appID) references applications(appName)
 );
 
-
+INSERT INTO amt.dev_users(firstName, lastName, email, passwd, isBeingReseted, isDisabled, isAdmin) VALUES ("a","a","admin@admin.com","a",0,0,1);
+INSERT INTO amt.dev_users(firstName, lastName, email, passwd, isBeingReseted, isDisabled, isAdmin) VALUES ("a","a","admin1@admin.com","a",0,0,0);
+INSERT INTO amt.dev_users(firstName, lastName, email, passwd, isBeingReseted, isDisabled, isAdmin) VALUES ("a","a","admin2@admin.com","a",0,0,0);
+INSERT INTO amt.dev_users(firstName, lastName, email, passwd, isBeingReseted, isDisabled, isAdmin) VALUES ("a","a","admin3@admin.com","a",0,0,0);
+INSERT INTO amt.dev_users(firstName, lastName, email, passwd, isBeingReseted, isDisabled, isAdmin) VALUES ("a","a","admin4@admin.com","a",0,0,0);
+INSERT INTO amt.dev_users(firstName, lastName, email, passwd, isBeingReseted, isDisabled, isAdmin) VALUES ("a","a","admin5@admin.com","a",0,0,0);
+INSERT INTO amt.dev_users(firstName, lastName, email, passwd, isBeingReseted, isDisabled, isAdmin) VALUES ("a","a","admin6@admin.com","a",0,0,0);
+INSERT INTO amt.dev_users(firstName, lastName, email, passwd, isBeingReseted, isDisabled, isAdmin) VALUES ("a","a","admin7@admin.com","a",0,0,0);
+INSERT INTO amt.dev_users(firstName, lastName, email, passwd, isBeingReseted, isDisabled, isAdmin) VALUES ("a","a","admin8@admin.com","a",0,0,0);
+INSERT INTO amt.dev_users(firstName, lastName, email, passwd, isBeingReseted, isDisabled, isAdmin) VALUES ("a","a","admin9@admin.com","a",0,0,0);
+INSERT INTO amt.dev_users(firstName, lastName, email, passwd, isBeingReseted, isDisabled, isAdmin) VALUES ("a","a","admin10@admin.com","a",0,0,0);
+INSERT INTO amt.dev_users(firstName, lastName, email, passwd, isBeingReseted, isDisabled, isAdmin) VALUES ("a","a","admin11@admin.com","a",0,0,0);
+INSERT INTO amt.dev_users(firstName, lastName, email, passwd, isBeingReseted, isDisabled, isAdmin) VALUES ("a","a","admin12@admin.com","a",0,0,0);

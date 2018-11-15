@@ -9,6 +9,7 @@ public class User {
    private int isBeingReseted;
    private int isDisabled;
    private int isAdmin;
+   public static int ELEMENT_BY_PAGE = 10;
 
    public User() {} // Empty constructor for JPA entity
 

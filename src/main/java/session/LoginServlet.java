@@ -17,32 +17,31 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class LoginServlet extends javax.servlet.http.HttpServlet {
-    /* TODO mettre l'email chez tout le monde
-    @EJB
-    Email e;
-    */
+
     @EJB
     UserDAOLocal userDao;
     @EJB
     ApplicationDAOLocal appDao;
+
     protected void doGET(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         req.getRequestDispatcher("/index.jsp").forward(req, resp);
     }
 
     // Source for session management; https://medium.com/@kasunpdh/session-management-in-java-using-servlet-filters-and-cookies-7c536b40448f
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("In login.Post");
         String email = req.getParameter("Email");
         String password = req.getParameter("Password");
         String message = "";
 
-        if(email != null && password != null){
+        if (email != null && password != null) {
             try {
                 User userToTest = userDao.find(email);
 
-                if(userToTest != null && email.equals(userToTest.getEmail()) && password.equals(userToTest.getPassword())){
+                if (userToTest != null && email.equals(userToTest.getEmail()) && password.equals(userToTest.getPassword())) {
 
                     // Generate a new session
                     HttpSession newSession = req.getSession();
@@ -50,27 +49,44 @@ public class LoginServlet extends javax.servlet.http.HttpServlet {
 
                     int isAdmin = userToTest.getIsAdmin();
                     int isDisabled = userToTest.getIsDisabled();
+                    int isBeingReseted = userToTest.getIsBeingReseted();
+                    newSession.setAttribute("admin", isAdmin);
+                    newSession.setAttribute("isDisabled", isDisabled);
+                    newSession.setAttribute("isBeingReseted",isBeingReseted);
+                    newSession.setAttribute("pageUser",0);
+                    newSession.setAttribute("pageApp",0);
 
-                    newSession.setAttribute("admin",isAdmin);
-                    newSession.setAttribute("isDisabled",isDisabled);
-                    if(isAdmin == 1){
-                        ArrayList<User> usersArray = userDao.getAllUsers();
-                        req.setAttribute("usersArray",usersArray);
-                        req.getRequestDispatcher("/WEB-INF/pages/admin.jsp").forward(req, resp);
-                    }else if(isDisabled == 1 ){
+                    if (isAdmin == 1) {
+                        int size = userDao.getSize();
+                        System.out.println(userDao.getSize());
+                        int nbElementToShow = size > User.ELEMENT_BY_PAGE ? User.ELEMENT_BY_PAGE : size;
+                        List<User> listApp = userDao.getApplicationPages(0,nbElementToShow);
+                        System.out.println(listApp);
+                        req.setAttribute("usersArray", listApp);
+                        req.setAttribute("admin", isAdmin);
+                        newSession.setAttribute("userToSee",size - nbElementToShow);
+                        req.getRequestDispatcher("/WEB-INF/pages/filtered/admin.jsp").forward(req, resp);
+                    } else if (isDisabled == 1) {
                         message = "Your account has been disabled";
-                        redirectToIndex(req,resp,message);
+                        redirectToIndex(req, resp, message);
+                    } else if(isBeingReseted == 1){
+                        newSession.invalidate();
+                        message = "Please change your password";
+                        req.setAttribute("reseted",message);
+                        req.getRequestDispatcher("/WEB-INF/pages/filtered/changePassword.jsp").forward(req, resp);
+                    }else{
+                        req.setAttribute("admin", isAdmin);
+                        int size = appDao.getSize(userToTest.getEmail());
+                        System.out.println(size);
+                        int nbElementToShow = size > Application.ELEMENT_BY_PAGE ? Application.ELEMENT_BY_PAGE : size;
+                        ArrayList<Application> list = appDao.getApplicationPages(userToTest.getEmail(),0,nbElementToShow);
+                        req.setAttribute("applist", list);
+                        newSession.setAttribute("appToSee",size - nbElementToShow);
+                        req.getRequestDispatcher("/WEB-INF/pages/filtered/view.jsp").forward(req, resp);
                     }
-
-                    //e.sendEmail("shinopill@gmail.com","test","test");
-                    req.setAttribute("admin",isAdmin);
-                    ArrayList<Application> list = appDao.getAllApplications(userToTest.getEmail());
-                    System.out.println(list);
-                    req.setAttribute("applist",list);
-                    req.getRequestDispatcher("/WEB-INF/pages/view.jsp").forward(req, resp);
-                }else {
+                } else {
                     message = "Wrong credentials";
-                    redirectToIndex(req,resp,message);
+                    redirectToIndex(req, resp, message);
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -79,8 +95,8 @@ public class LoginServlet extends javax.servlet.http.HttpServlet {
 
     }
 
-    private void redirectToIndex(HttpServletRequest req, HttpServletResponse resp,String message) throws ServletException, IOException {
-        req.setAttribute("erreur",message);
+    private void redirectToIndex(HttpServletRequest req, HttpServletResponse resp, String message) throws ServletException, IOException {
+        req.setAttribute("erreur", message);
         req.getRequestDispatcher("/index.jsp").forward(req, resp);
     }
 }

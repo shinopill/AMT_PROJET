@@ -28,7 +28,11 @@ public class ProfilServlet extends javax.servlet.http.HttpServlet {
         }
         request.setAttribute("user", user);
         request.setAttribute("admin", isAdmin);
-        request.getRequestDispatcher("/WEB-INF/pages/profil.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/pages/filtered/profil.jsp").forward(request, response);
     }
 
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        this.doGet(req, resp);
+    }
 }
