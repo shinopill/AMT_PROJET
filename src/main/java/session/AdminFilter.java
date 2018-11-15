@@ -23,7 +23,7 @@ public class AdminFilter implements Filter {
 
         HttpSession session = req.getSession(false);
 
-        if (session.getAttribute("admin") != null && (int)session.getAttribute("admin") == 1) {   //checking whether the user is an admin exists
+        if (session.getAttribute("admin") != null && (int)session.getAttribute("admin") == 1) {  // checking whether the user is an admin
             // pass the request along the filter chain
             chain.doFilter(request, response);
         } else {
