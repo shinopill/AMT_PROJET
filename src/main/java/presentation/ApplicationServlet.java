@@ -34,10 +34,10 @@ public class ApplicationServlet extends javax.servlet.http.HttpServlet {
             }
 
             if (ok == 1) {
-                resp.sendRedirect("view");
+                resp.sendRedirect("/amt_projet/filtered/view");
             } else {
                 req.setAttribute("erreur", "Invalid name (to long or already taken)");
-                req.getRequestDispatcher("/WEB-INF/pages/applicationForm.jsp").forward(req, resp);
+                req.getRequestDispatcher("/WEB-INF/pages/filtered/applicationForm.jsp").forward(req, resp);
             }
         }else {
             req.getRequestDispatcher("/index.jsp").forward(req, resp);
@@ -46,6 +46,6 @@ public class ApplicationServlet extends javax.servlet.http.HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/pages/applicationForm.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/pages/filtered/applicationForm.jsp").forward(req, resp);
     }
 }

@@ -18,7 +18,7 @@ public class PasswordServlet extends javax.servlet.http.HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/WEB-INF/pages/changePassword.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/pages/filtered/changePassword.jsp").forward(request, response);
     }
 
     @Override
@@ -53,11 +53,11 @@ public class PasswordServlet extends javax.servlet.http.HttpServlet {
                     resp.sendRedirect("profil");
                 } else {
                     req.setAttribute("erreur", "Problem while updating the password please try again later");
-                    req.getRequestDispatcher("/WEB-INF/pages/changePassword.jsp").forward(req, resp);
+                    req.getRequestDispatcher("/WEB-INF/pages/filtered/changePassword.jsp").forward(req, resp);
                 }
             }else{
                 req.setAttribute("erreur", "The passwords don't match");
-                req.getRequestDispatcher("/WEB-INF/pages/changePassword.jsp").forward(req, resp);
+                req.getRequestDispatcher("/WEB-INF/pages/filtered/changePassword.jsp").forward(req, resp);
             }
         }else {
             req.getRequestDispatcher("/index.jsp").forward(req, resp);

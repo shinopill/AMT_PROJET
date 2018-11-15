@@ -7,8 +7,11 @@
 </head>
 <body>
 <nav>
-    <a class="links" href="${pageContext.request.contextPath}/profil">Profil</a>
-    <a class="links" href="${pageContext.request.contextPath}/view">Applications</a>
+    <a class="links" href="${pageContext.request.contextPath}/filtered/profil">Profil</a>
+    <a class="links" href="${pageContext.request.contextPath}/filtered/view">Applications</a>
+    <c:if test="${admin eq 1}">
+        <a class="links" href="${pageContext.request.contextPath}/filtered/admin">Admin</a>
+    </c:if>
     <a class="links" href="${pageContext.request.contextPath}/logout">Logout</a>
 </nav>
 
@@ -22,10 +25,10 @@
                     <th>${user.getEmail()}</th>
                     <th>${user.getIsDisabled()}</th>
                     <th>
-                        <a class="links" href="${pageContext.request.contextPath}/admin?reset=${user.getEmail()}">reset password</a>
+                        <a class="links" href="${pageContext.request.contextPath}/filtered/admin?reset=${user.getEmail()}">reset password</a>
                     </th>
                     <th>
-                        <a class="links" href="${pageContext.request.contextPath}/admin?disable=${user.getEmail()}">disable/enable user</a>
+                        <a class="links" href="${pageContext.request.contextPath}/filtered/admin?disable=${user.getEmail()}">disable/enable user</a>
                     </th>
                 </tr>
             </c:forEach>
@@ -33,10 +36,10 @@
         </table>
     </ul>
     <c:if test="${pageUser ne 0}">
-        <a class="links" href="${pageContext.request.contextPath}/admin?do=previous" >Previous</a>
+        <a class="links" href="${pageContext.request.contextPath}/filtered/admin?do=previous" >Previous</a>
     </c:if>
     <c:if test="${userToSee ne 0}">
-        <a class="links" href="${pageContext.request.contextPath}/admin?do=next">Next</a>
+        <a class="links" href="${pageContext.request.contextPath}/filtered/admin?do=next">Next</a>
     </c:if>
 
 

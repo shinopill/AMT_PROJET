@@ -35,9 +35,9 @@ public class EditAppServlet extends javax.servlet.http.HttpServlet {
             request.setAttribute("description", description);
             request.setAttribute("name", name);
 
-            request.getRequestDispatcher("/WEB-INF/pages/editApp.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/pages/filtered/editApp.jsp").forward(request, response);
         } else {
-            request.getRequestDispatcher("/WEB-INF/pages/view.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/pages/filtered/view.jsp").forward(request, response);
 
         }
     }
@@ -64,9 +64,9 @@ public class EditAppServlet extends javax.servlet.http.HttpServlet {
                 req.setAttribute("erreur", "Invalid name (to long or already taken)");
                 req.setAttribute("name", req.getParameter("oldname"));
                 req.setAttribute("description", description);
-                req.getRequestDispatcher("/WEB-INF/pages/editApp.jsp").forward(req, resp);
+                req.getRequestDispatcher("/WEB-INF/pages/filtered/editApp.jsp").forward(req, resp);
             }else{
-                req.getRequestDispatcher("/WEB-INF/pages/view.jsp").forward(req, resp);
+                req.getRequestDispatcher("/WEB-INF/pages/filtered/view.jsp").forward(req, resp);
             }
         }
     }

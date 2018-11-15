@@ -75,6 +75,6 @@ public class ViewServlet extends javax.servlet.http.HttpServlet {
         request.setAttribute("applist", list);
         session.setAttribute("appToSee",appListSize - nbAppShowed - nbElementToShow);
         request.setAttribute("admin", isAdmin);
-        request.getRequestDispatcher("/WEB-INF/pages/view.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/pages/filtered/view.jsp").forward(request, response);
     }
 }

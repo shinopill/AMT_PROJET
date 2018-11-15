@@ -9,13 +9,13 @@
 </head>
 <body>
 <nav>
-    <a class="links" href="${pageContext.request.contextPath}/profil">Profil</a>
-    <a class="links" href="${pageContext.request.contextPath}/view">Applications</a>
+    <a class="links" href="${pageContext.request.contextPath}/filtered/profil">Profil</a>
+    <a class="links" href="${pageContext.request.contextPath}/filtered/view">Applications</a>
     <c:if test="${admin eq 0}">
-        <a class="links" href="${pageContext.request.contextPath}/appregister">Add an app</a>
+        <a class="links" href="${pageContext.request.contextPath}/filtered/appregister">Add an app</a>
     </c:if>
     <c:if test="${admin eq 1}">
-        <a class="links" href="${pageContext.request.contextPath}/admin">Admin</a>
+        <a class="links" href="${pageContext.request.contextPath}/filtered/admin">Admin</a>
     </c:if>
 
     <a class="links" href="${pageContext.request.contextPath}/logout">Logout</a>
@@ -40,10 +40,10 @@
                     <th>${application.getKeySecret()}</th>
                     <c:if test="${admin eq 0}">
                         <th>
-                            <a class="links" href="${pageContext.request.contextPath}/edit?name=${application.getName()}">Edit</a>
+                            <a class="links" href="${pageContext.request.contextPath}/filtered/edit?name=${application.getName()}">Edit</a>
                         </th>
                         <th>
-                            <a class="links" href="${pageContext.request.contextPath}/view?delete=${application.getName()}" >Delete</a>
+                            <a class="links" href="${pageContext.request.contextPath}/filtered/view?delete=${application.getName()}" >Delete</a>
                         </th>
                     </c:if>
                 </tr>
@@ -52,10 +52,10 @@
         </table>
     </ul>
     <c:if test="${pageApp ne 0}">
-        <a class="links" href="${pageContext.request.contextPath}/view?do=previous" >Previous</a>
+        <a class="links" href="${pageContext.request.contextPath}/filtered/view?do=previous" >Previous</a>
     </c:if>
     <c:if test="${appToSee ne 0}">
-        <a class="links" href="${pageContext.request.contextPath}/view?do=next">Next</a>
+        <a class="links" href="${pageContext.request.contextPath}/filtered/view?do=next">Next</a>
     </c:if>
 </div>
 </div>
