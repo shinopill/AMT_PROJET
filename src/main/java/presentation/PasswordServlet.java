@@ -1,9 +1,8 @@
 package presentation;
 
-import dao.ApplicationDAOLocal;
 import dao.UserDAOLocal;
-import model.Application;
 import model.User;
+import org.openqa.selenium.remote.http.HttpResponse;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -16,15 +15,13 @@ import java.sql.SQLException;
 public class PasswordServlet extends javax.servlet.http.HttpServlet {
     @EJB
     UserDAOLocal userDao;
-    @EJB
-    ApplicationDAOLocal appDao;
+
     @Override
-
-
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("/WEB-INF/pages/changePassword.jsp").forward(request, response);
     }
 
+    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String oldPass = req.getParameter("oldPass");
         String newPass = req.getParameter("newPass");
@@ -53,7 +50,7 @@ public class PasswordServlet extends javax.servlet.http.HttpServlet {
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }
-                    req.getRequestDispatcher("/WEB-INF/pages/profil.jsp").forward(req, resp);
+                    resp.sendRedirect("profil");
                 } else {
                     req.setAttribute("erreur", "Problem while updating the password please try again later");
                     req.getRequestDispatcher("/WEB-INF/pages/changePassword.jsp").forward(req, resp);
