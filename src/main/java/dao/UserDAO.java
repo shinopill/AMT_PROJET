@@ -1,8 +1,11 @@
 package dao;
 
 import javax.annotation.Resource;
+import javax.ejb.ApplicationException;
 import javax.ejb.Stateless;
 
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,8 +17,9 @@ import java.util.logging.Logger;
 
 import model.User;
 
+
 @Stateless
-public class UserDAO implements UserDAOLocal {
+public class UserDAO implements UserDAOLocal{
 
     // Add business logic below.
     @Resource(lookup = "java:/AMT")
@@ -102,6 +106,61 @@ public class UserDAO implements UserDAOLocal {
         return result;
     }
 
+
+    @Override
+    public ArrayList<User> getApplicationPages(int rowNumber, int limit) throws SQLException {
+        this.connection = dataSource.getConnection();
+        ArrayList<User> users = new ArrayList<User>();
+        String query = "SELECT * FROM dev_users ORDER BY email LIMIT ? OFFSET ?" ;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1,limit);
+            preparedStatement.setInt(2,rowNumber);
+            resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()) {
+                User user = new User(resultSet.getString(1), resultSet.getString(2),
+                        resultSet.getString(3), resultSet.getString(4),
+                        resultSet.getInt(5), resultSet.getInt(6), resultSet.getInt(7));
+                users.add(user);
+
+            }
+
+            return users;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            connection.close();
+        }
+
+        return null;
+    }
+
+
+    @Override
+    public int getSize() throws SQLException {
+        this.connection = dataSource.getConnection();
+        String query = "SELECT COUNT(*) FROM dev_users";
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
+            preparedStatement =  connection.prepareStatement(query);
+                        resultSet = preparedStatement.executeQuery();
+
+            if(resultSet.next()) {
+               return resultSet.getInt(1);
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            connection.close();
+        }
+        return 0;
+    }
     @Override
     public int updateUser(String userMail, String colonne, String value) {
  /*

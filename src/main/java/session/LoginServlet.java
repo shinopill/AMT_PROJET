@@ -55,13 +55,16 @@ public class LoginServlet extends javax.servlet.http.HttpServlet {
                     newSession.setAttribute("isBeingReseted",isBeingReseted);
                     newSession.setAttribute("pageUser",0);
                     newSession.setAttribute("pageApp",0);
+
                     if (isAdmin == 1) {
-                        ArrayList<User> usersArray = userDao.getAllUsers();
-                        int nbElementToShow = usersArray.size() > User.ELEMENT_BY_PAGE ? User.ELEMENT_BY_PAGE : usersArray.size();
-                        List<User> listApp = usersArray.subList(0, nbElementToShow);
+                        int size = userDao.getSize();
+                        System.out.println(userDao.getSize());
+                        int nbElementToShow = size > User.ELEMENT_BY_PAGE ? User.ELEMENT_BY_PAGE : size;
+                        List<User> listApp = userDao.getApplicationPages(0,nbElementToShow);
+                        System.out.println(listApp);
                         req.setAttribute("usersArray", listApp);
                         req.setAttribute("admin", isAdmin);
-                        newSession.setAttribute("userToSee",usersArray.size() - nbElementToShow);
+                        newSession.setAttribute("userToSee",size - nbElementToShow);
                         req.getRequestDispatcher("/WEB-INF/pages/filtered/admin.jsp").forward(req, resp);
                     } else if (isDisabled == 1) {
                         message = "Your account has been disabled";
@@ -73,11 +76,12 @@ public class LoginServlet extends javax.servlet.http.HttpServlet {
                         req.getRequestDispatcher("/WEB-INF/pages/filtered/changePassword.jsp").forward(req, resp);
                     }else{
                         req.setAttribute("admin", isAdmin);
-                        ArrayList<Application> list = appDao.getAllApplications(userToTest.getEmail());
-                        int nbElementToShow = list.size() > Application.ELEMENT_BY_PAGE ? Application.ELEMENT_BY_PAGE : list.size();
-                        List<Application> list1 = list.subList(0,nbElementToShow);
-                        req.setAttribute("applist", list1);
-                        newSession.setAttribute("appToSee",list.size() - nbElementToShow);
+                        int size = appDao.getSize(userToTest.getEmail());
+                        System.out.println(size);
+                        int nbElementToShow = size > Application.ELEMENT_BY_PAGE ? Application.ELEMENT_BY_PAGE : size;
+                        ArrayList<Application> list = appDao.getApplicationPages(userToTest.getEmail(),0,nbElementToShow);
+                        req.setAttribute("applist", list);
+                        newSession.setAttribute("appToSee",size - nbElementToShow);
                         req.getRequestDispatcher("/WEB-INF/pages/filtered/view.jsp").forward(req, resp);
                     }
                 } else {

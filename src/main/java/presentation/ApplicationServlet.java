@@ -34,7 +34,7 @@ public class ApplicationServlet extends javax.servlet.http.HttpServlet {
             }
 
             if (ok == 1) {
-                resp.sendRedirect("/amt_projet/filtered/view");
+                resp.sendRedirect("view");
             } else {
                 req.setAttribute("erreur", "Invalid name (to long or already taken)");
                 req.getRequestDispatcher("/WEB-INF/pages/filtered/applicationForm.jsp").forward(req, resp);

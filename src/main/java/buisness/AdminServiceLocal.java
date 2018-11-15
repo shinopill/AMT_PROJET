@@ -5,7 +5,7 @@ import model.User;
 
 public interface AdminServiceLocal {
     
-    boolean resetUserPassword(User user);
-    boolean suspendAccount(User user);
-    ArrayList<User> getDeveloppersDetails();
+    void resetPassword(String name);
+
+    void changeActive(String name);
 }

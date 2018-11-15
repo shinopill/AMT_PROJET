@@ -11,7 +11,12 @@ public interface UserDAOLocal {
    
    int createUser(User user) throws SQLException;
    int setActive(String email,int a ) throws SQLException;
-   int updateUser(String userMail, String colonne, String value);
+
+    ArrayList<User> getApplicationPages(int rowNumber, int limit) throws SQLException;
+
+    int getSize() throws SQLException;
+
+    int updateUser(String userMail, String colonne, String value);
 
    int updatePassword(String userMail, String value) throws SQLException;
 

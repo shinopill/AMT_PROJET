@@ -58,11 +58,10 @@ public class ViewServlet extends javax.servlet.http.HttpServlet {
 
                 isAdmin = (int) session.getAttribute("admin");
                 appListSize =  isAdmin == 1 ?  appDao.getSize() : appDao.getSize((String)session.getAttribute("email"));
-
+                nbAppShowed = (int)session.getAttribute("pageApp") * Application.ELEMENT_BY_PAGE;
                 nbAppToShow = appListSize - nbAppShowed;
                 nbElementToShow = nbAppToShow > Application.ELEMENT_BY_PAGE ? Application.ELEMENT_BY_PAGE : nbAppToShow;
 
-                nbAppShowed = (int)session.getAttribute("pageApp") * Application.ELEMENT_BY_PAGE;
 
                 list =  isAdmin == 1 ? appDao.getApplicationPages(nbAppShowed,nbElementToShow) : appDao.getApplicationPages((String)session.getAttribute("email"),nbAppShowed,nbElementToShow);
 
