@@ -43,22 +43,22 @@
                         <th>Dev</th>
                     </c:if>
                     <th>
-                        <a class="links2"
+                        <a class="table-links"
                            href="${pageContext.request.contextPath}/filtered/admin?reset=${user.getEmail()}">Reset
                             Password</a>
                     </th>
                     <th>
-                        <a class="links2"
+                        <a class="table-links"
                            href="${pageContext.request.contextPath}/filtered/admin?delete=${user.getEmail()}">Delete
                             user</a>
                     </th>
                     <th>
-                        <a class="links2"
+                        <a class="table-links"
                            href="${pageContext.request.contextPath}/filtered/admin?disable=${user.getEmail()}">Disable/Enable
                             User</a>
                     </th>
                     <th>
-                        <a class="links2" href="${pageContext.request.contextPath}/filtered/admin?up=${user.getEmail()}">Promote/Demote
+                        <a class="table-links" href="${pageContext.request.contextPath}/filtered/admin?up=${user.getEmail()}">Promote/Demote
                             User</a>
                     </th>
                 </tr>

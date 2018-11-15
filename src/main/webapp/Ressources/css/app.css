@@ -45,7 +45,6 @@ body {
 .links {
   text-decoration:none;
   color: #EFEFEF;
-  
 }
 
 .links:hover {
@@ -55,7 +54,7 @@ body {
   padding: 16px;
    position: absolute;
    margin: auto;
-   top: 30;
+   top: 30px;
    left: 10%;
    width: 300px;
    border-radius: 10px;

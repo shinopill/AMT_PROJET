@@ -99,6 +99,7 @@ textarea {
   resize:none;
   border-radius:10px;
   width:98%;
+    height:100px;
 }
 
 .error {
