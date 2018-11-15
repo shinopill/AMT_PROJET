@@ -1,5 +1,6 @@
 package presentation;
 
+import buisness.AdminServiceLocal;
 import buisness.Email;
 import dao.UserDAOLocal;
 import model.Application;
@@ -21,7 +22,7 @@ public class AdminServlet extends javax.servlet.http.HttpServlet {
     @EJB
     UserDAOLocal userDao;
     @EJB
-    Email email;
+    AdminServiceLocal admin;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -42,52 +43,35 @@ public class AdminServlet extends javax.servlet.http.HttpServlet {
         // Check if clicked on enable/disable; change the user's active/inactive status if it's the case
         if (request.getParameter("disable") != null) {
             String name = request.getParameter("disable");
-            int n = 0;
-            try {
-                n = userDao.getActive(name);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-
-            try {
-                userDao.setActive(name, n == 1 ? 0 : 1);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            admin.changeActive(name);
         }
 
         // Check if clicked on reset Password; If it's the case, send a mail to the user with his new password
         if (request.getParameter("reset") != null) {
             String name = request.getParameter("reset");
-            int t = UUID.randomUUID().hashCode();
-            try {
-                email.sendEmail(name, "Gamification engine password reset", "Your password on " +
-                        "the gamification engine app has been reset.\nYour new password is " + t +
-                        ". Please connect to the app to change it.\nBest regards,\nThe Admin");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            try {
-                userDao.updatePassword(name, String.valueOf(t));
-                userDao.setRested(name, 1);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            admin.resetPassword(name);
         }
 
+
+        int size = 0;
+        // Deal with the pagination
+        int nbUserShowed = (int) session.getAttribute("pageUser") * Application.ELEMENT_BY_PAGE;
         try {
-            usersArray = userDao.getAllUsers();
+           size = userDao.getSize();
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        // Deal with the pagination
-        int nbAppShowed = (int) session.getAttribute("pageUser") * Application.ELEMENT_BY_PAGE;
-        int nbAppToShow = usersArray.size() - nbAppShowed;
-        int nbElementToShow = nbAppToShow > User.ELEMENT_BY_PAGE ? User.ELEMENT_BY_PAGE : nbAppToShow;
-        List<User> listApp = usersArray.subList(nbAppShowed, nbAppShowed + nbElementToShow);
+        int  nbUserToShow = size - nbUserShowed;
+        int nbElementToShow = nbUserToShow > User.ELEMENT_BY_PAGE ? User.ELEMENT_BY_PAGE : nbUserToShow;
+        List<User> listApp = null;
+        try {
+            listApp = userDao.getApplicationPages(nbUserShowed,nbElementToShow);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-        session.setAttribute("userToSee", usersArray.size() - nbAppShowed - nbElementToShow);
+        session.setAttribute("userToSee", nbUserToShow - nbElementToShow);
         request.setAttribute("usersArray", listApp);
         request.getRequestDispatcher("/WEB-INF/pages/admin.jsp").forward(request, response);
     }

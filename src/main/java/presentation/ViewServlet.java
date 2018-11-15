@@ -35,6 +35,9 @@ public class ViewServlet extends javax.servlet.http.HttpServlet {
         int nbAppShowed = 0;
         HttpSession session = request.getSession(false);
         int page = (int)session.getAttribute("pageApp");
+        int nbElementToShow = 0;
+        int nbAppToShow = 0;
+        int appListSize = 0;
         try {
 
             if(session != null && session.getAttribute("email") != null) {
@@ -53,20 +56,24 @@ public class ViewServlet extends javax.servlet.http.HttpServlet {
                     appDao.deleteApp((String)session.getAttribute("email"),request.getParameter("delete"));
                 }
 
-                nbAppShowed = (int)session.getAttribute("pageApp") * Application.ELEMENT_BY_PAGE;
                 isAdmin = (int) session.getAttribute("admin");
-                list =  isAdmin == 1 ? appDao.getAllApplications() : appDao.getAllApplications((String) session.getAttribute("email"));
+                appListSize =  isAdmin == 1 ?  appDao.getSize() : appDao.getSize((String)session.getAttribute("email"));
+
+                nbAppToShow = appListSize - nbAppShowed;
+                nbElementToShow = nbAppToShow > Application.ELEMENT_BY_PAGE ? Application.ELEMENT_BY_PAGE : nbAppToShow;
+
+                nbAppShowed = (int)session.getAttribute("pageApp") * Application.ELEMENT_BY_PAGE;
+
+                list =  isAdmin == 1 ? appDao.getApplicationPages(nbAppShowed,nbElementToShow) : appDao.getApplicationPages((String)session.getAttribute("email"),nbAppShowed,nbElementToShow);
 
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-            int nbAppToShow = list.size() - nbAppShowed;
-            int nbElementToShow = nbAppToShow > Application.ELEMENT_BY_PAGE ? Application.ELEMENT_BY_PAGE : nbAppToShow;
-            List<Application> listApp = list.subList(nbAppShowed,nbAppShowed + nbElementToShow);
-            request.setAttribute("applist", listApp);
-            session.setAttribute("appToSee",list.size() - nbAppShowed - nbElementToShow);
+
+        request.setAttribute("applist", list);
+        session.setAttribute("appToSee",appListSize - nbAppShowed - nbElementToShow);
         request.setAttribute("admin", isAdmin);
         request.getRequestDispatcher("/WEB-INF/pages/view.jsp").forward(request, response);
     }
