@@ -91,12 +91,11 @@ input[type=button] {
    background-color: #e15454 ;
    color: white;
    padding: 14px 20px;
-   margin: 8px 0;
+   margin: 8px 0 0 40%;
    border: none;
    border-radius: 10px;
    cursor: pointer;
 }
-
 input[type=button]:hover {
    background-color: #D34949;
 }

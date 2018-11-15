@@ -39,6 +39,8 @@
                   </tr>
                </c:forEach>
 
+
+
             </table>
          </ul>
          <c:if test="${pageUser ne 0}">
@@ -47,6 +49,8 @@
          <c:if test="${userToSee ne 0}">
             <a class="links" href="${pageContext.request.contextPath}/filtered/admin?do=next">Next</a>
          </c:if>
+
+
       </div>
    </body>
 </html>
