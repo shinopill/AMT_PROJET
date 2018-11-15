@@ -89,6 +89,6 @@ public class AdminServlet extends javax.servlet.http.HttpServlet {
 
         session.setAttribute("userToSee", usersArray.size() - nbAppShowed - nbElementToShow);
         request.setAttribute("usersArray", listApp);
-        request.getRequestDispatcher("/WEB-INF/pages/admin.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/pages/filtered/admin.jsp").forward(request, response);
     }
 }

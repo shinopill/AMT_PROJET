@@ -62,14 +62,14 @@ public class LoginServlet extends javax.servlet.http.HttpServlet {
                         req.setAttribute("usersArray", listApp);
                         req.setAttribute("admin", isAdmin);
                         newSession.setAttribute("userToSee",usersArray.size() - nbElementToShow);
-                        req.getRequestDispatcher("/WEB-INF/pages/admin.jsp").forward(req, resp);
+                        req.getRequestDispatcher("/WEB-INF/pages/filtered/admin.jsp").forward(req, resp);
                     } else if (isDisabled == 1) {
                         message = "Your account has been disabled";
                         redirectToIndex(req, resp, message);
                     } else if(isBeingReseted == 1){
                         message = "Please change your password";
                         req.setAttribute("reseted",message);
-                        req.getRequestDispatcher("/WEB-INF/pages/changePassword.jsp").forward(req, resp);
+                        req.getRequestDispatcher("/WEB-INF/pages/filtered/changePassword.jsp").forward(req, resp);
                     }else{
                         req.setAttribute("admin", isAdmin);
                         ArrayList<Application> list = appDao.getAllApplications(userToTest.getEmail());
@@ -77,7 +77,7 @@ public class LoginServlet extends javax.servlet.http.HttpServlet {
                         List<Application> list1 = list.subList(0,nbElementToShow);
                         req.setAttribute("applist", list1);
                         newSession.setAttribute("appToSee",list.size() - nbElementToShow);
-                        req.getRequestDispatcher("/WEB-INF/pages/view.jsp").forward(req, resp);
+                        req.getRequestDispatcher("/WEB-INF/pages/filtered/view.jsp").forward(req, resp);
                     }
                 } else {
                     message = "Wrong credentials";

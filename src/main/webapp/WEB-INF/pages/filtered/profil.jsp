@@ -6,13 +6,13 @@
 </head>
 <body>
 <nav>
-    <a class="links" href="${pageContext.request.contextPath}/profil">Profil</a>
-    <a class="links" href="${pageContext.request.contextPath}/view">Applications</a>
+    <a class="links" href="${pageContext.request.contextPath}/filtered/profil">Profil</a>
+    <a class="links" href="${pageContext.request.contextPath}/filtered/view">Applications</a>
     <c:if test="${admin eq 0}">
-        <a class="links" href="${pageContext.request.contextPath}/appregister">Add an app</a>
+        <a class="links" href="${pageContext.request.contextPath}/filtered/appregister">Add an app</a>
     </c:if>
     <c:if test="${admin eq 1}">
-        <a class="links" href="${pageContext.request.contextPath}/admin">Admin</a>
+        <a class="links" href="${pageContext.request.contextPath}/filtered/admin">Admin</a>
     </c:if>
     <a class="links" href="${pageContext.request.contextPath}/logout">Logout</a>
 </nav>
@@ -23,7 +23,7 @@
         <p>LastName : ${user.getLastName()}</p>
         <p>Email : ${user.getEmail()}</p>
 
-        <form action="${pageContext.request.contextPath}/password" method="get">
+        <form action="${pageContext.request.contextPath}/filtered/password" method="get">
             <input type="submit" value="Change Password"/>
         </form>
 
