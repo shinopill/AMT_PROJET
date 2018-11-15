@@ -9,6 +9,7 @@
 
 <body>
 <nav class="sidebar">
+  <ul>
     <li><a class="links" href="${pageContext.request.contextPath}/filtered/profil">Profil</a></li>
     <li><a class="links" href="${pageContext.request.contextPath}/filtered/view">Applications</a></li>
     <c:if test="${admin eq 0}">
