@@ -3,21 +3,22 @@
 <html>
 <head>
     <title>Application Registration</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Ressources/css/styles.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Ressources/css/applicationForm.css"/>
 </head>
 
 <body>
-<nav>
-    <a class="links" href="${pageContext.request.contextPath}/profil">Profil</a>
-    <a class="links" href="${pageContext.request.contextPath}/view">Applications</a>
-    <a class="links" href="${pageContext.request.contextPath}/appregister">Add an app</a>
+<nav class="sidebar">
+  <ul>
+    <li><a class="links" href="${pageContext.request.contextPath}/profil">Profil</a></li>
+    <li><a class="links" href="${pageContext.request.contextPath}/view">Applications</a></li>
+    <li><a class="links" href="${pageContext.request.contextPath}/appregister">Add an app</a></li>
     <c:if test="${admin eq 1}">
-        <a class="links" href="${pageContext.request.contextPath}/admin">Admin</a>
+      <li><a class="links" href="${pageContext.request.contextPath}/admin">Admin</a></li>
     </c:if>
-    <a class="links" href="${pageContext.request.contextPath}/logout">Logout</a>
-</nav>
-
-<div class="form_div">
+    <li><a class="links" href="${pageContext.request.contextPath}/logout">Logout</a>
+  </ul>
+    </nav>
+<div class="container">
     <h2>App Registration</h2>
     Please provide the following information to register your app :
 
@@ -27,11 +28,13 @@
         <input type="submit" name="Add"/>
         <input type="button" value="Cancel" onclick="window.location.href='${pageContext.request.contextPath}/view'"/>
         <c:if test="${erreur ne null}">
-            <p>${erreur}</p>
+            <p class="error">${erreur}</p>
         </c:if>
     </form>
 
 </div>
 </body>
 </html>
+
+
 

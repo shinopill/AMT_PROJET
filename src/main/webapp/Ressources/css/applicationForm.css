@@ -63,5 +63,46 @@ body {
    ;}
 
 
+input[type=text] {
+   width: 100%;
+   padding: 12px 20px;
+   margin: 8px 0;
+   display: inline-block;
+   border: 1px solid #ccc;
+   border-radius: 10px;
+   box-sizing: border-box;
+}
 
+input[type=submit] {
+   background-color: #4CAF50;
+   color: white;
+   padding: 14px 20px;
+   margin: 8px 0;
+   border: none;
+   border-radius: 10px;
+   cursor: pointer;
+}
 
+input[type=button] {
+   background-color: #e15454 ;
+   color: white;
+   padding: 14px 20px;
+   margin: 8px 0;
+   border: none;
+   border-radius: 10px;
+   cursor: pointer;
+}
+
+textarea {
+  resize:none;
+  border-radius:10px;
+  width:95%;
+}
+
+.error {
+  color:red;
+}
+
+h2 {
+  text-align:center;
+}

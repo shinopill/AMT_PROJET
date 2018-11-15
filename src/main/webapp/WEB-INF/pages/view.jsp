@@ -4,21 +4,21 @@
 
 <head>
     <title>Applications</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Ressources/css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Ressources/css/app.css" />
 </head>
 <body>
-<nav>
-    <a class="links" href="${pageContext.request.contextPath}/profil">Profil</a>
-    <a class="links" href="${pageContext.request.contextPath}/view">Applications</a>
-    <a class="links" href="${pageContext.request.contextPath}/appregister">Add an app</a>
-    <c:if test="${admin eq 1}">
-        <a class="links" href="${pageContext.request.contextPath}/admin">Admin</a>
-    </c:if>
-
-    <a class="links" href="${pageContext.request.contextPath}/logout">Logout</a>
+<nav class="sidebar">
+    
+  <ul>
+  <li> <a class="links" href="${pageContext.request.contextPath}/profil">Profil</a></li>
+    <li><a class="links" href="${pageContext.request.contextPath}/view">Applications</a></li>
+    <li><a class="links" href="${pageContext.request.contextPath}/appregister">Add an app</a></li>
+    <li><a class="links" href="${pageContext.request.contextPath}/admin">Admin</a></li>
+    <li><a class="links" href="${pageContext.request.contextPath}/logout">Logout</a></li>
+  </ul>
 </nav>
 <div class='container'>
-    <h1>Your applications:</h1>
+    <h2>Your applications</h2>
 
     <ul>
         <c:forEach items="${applist}" var="application">

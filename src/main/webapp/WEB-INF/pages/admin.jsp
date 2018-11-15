@@ -1,10 +1,12 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Admin</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Ressources/css/admin.css" />
 </head>
 <body>
-<nav class="navigation">
+<nav class="sidebar">
   <ul>
   <li> <a class="links" href="${pageContext.request.contextPath}/profil">Profil</a></li>
     <li><a class="links" href="${pageContext.request.contextPath}/view">Applications</a></li>
@@ -16,7 +18,7 @@
 
 
 <div class="container">
-    <h1>Users</h1>
+    <h1>Users:</h1>
     <ul>
         <c:forEach items="${users}" var="user">
             <li>${user.getId()}</li>

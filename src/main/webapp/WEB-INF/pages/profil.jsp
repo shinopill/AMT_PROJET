@@ -2,18 +2,20 @@
 <html>
 <head>
     <title>Profil</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Ressources/css/styles.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Ressources/css/admin.css"/>
 </head>
 <body>
-<nav>
-    <a class="links" href="${pageContext.request.contextPath}/profil">Profil</a>
-    <a class="links" href="${pageContext.request.contextPath}/view">Applications</a>
-    <a class="links" href="${pageContext.request.contextPath}/appregister">Add an app</a>
+<nav class="sidebar">
+  <ul>
+    <li><a class="links" href="${pageContext.request.contextPath}/profil">Profil</a></li>
+   <li> <a class="links" href="${pageContext.request.contextPath}/view">Applications</a></li>
+   <li> <a class="links" href="${pageContext.request.contextPath}/appregister">Add an app</a></li>
     <c:if test="${admin eq 1}">
-        <a class="links" href="${pageContext.request.contextPath}/admin">Admin</a>
+      <li><a class="links" href="${pageContext.request.contextPath}/admin">Admin</a></li>
     </c:if>
-    <a class="links" href="${pageContext.request.contextPath}/logout">Logout</a>
-</nav>
+    <li>  <a class="links" href="${pageContext.request.contextPath}/logout">Logout</a></li>
+</ul>
+    </nav>
 <div class="container">
     <c:if test="${user ne null}">
         <h2>Your informations </h2>
