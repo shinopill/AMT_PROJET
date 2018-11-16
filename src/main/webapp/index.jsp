@@ -11,7 +11,7 @@
     <form action="${pageContext.request.contextPath}/login" method="post">
         <input type="email" name="Email" placeholder="Email"/><br>
         <input type="password" name="Password" placeholder="Password"/><br>
-        <Button>Login</Button>
+        <Button value="Login">Login</Button>
         <c:if test="${erreur ne null}">
             <p class="error">${erreur}</p>
         </c:if>

@@ -15,7 +15,6 @@ public class Email {
     @Resource(lookup = "java:jboss/mail/gmail")
     private Session session;
 
-
     public Email() {
     }
 
@@ -30,4 +29,6 @@ public class Email {
             Transport.send(message);
 
     }
+
+
 }

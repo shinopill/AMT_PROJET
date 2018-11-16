@@ -5,19 +5,22 @@ import java.sql.SQLException;
 import java.util.UUID;
 import dao.UserDAOLocal;
 
+import javax.annotation.Resource;
 import javax.ejb.*;
 import javax.mail.MessagingException;
 import javax.transaction.Transactional;
-
+import javax.transaction.UserTransaction;
 
 @Stateless
 public class AdminService extends RuntimeException implements AdminServiceLocal   {
 
     @EJB
     Email email;
+
     @EJB
     UserDAOLocal userDao;
 
+    private UserTransaction user;
     @Override
     public void resetPassword(String name){
         int t = UUID.randomUUID().hashCode();

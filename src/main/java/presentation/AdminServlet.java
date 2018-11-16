@@ -24,6 +24,7 @@ public class AdminServlet extends javax.servlet.http.HttpServlet {
     @EJB
     AdminServiceLocal admin;
 
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         // Show the list of the users and allow the admin to reset an user password or change the account active status

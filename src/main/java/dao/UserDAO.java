@@ -3,8 +3,13 @@ package dao;
 import model.User;
 
 import javax.annotation.Resource;
+import javax.ejb.ApplicationException;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionManagement;
+import javax.ejb.TransactionManagementType;
 import javax.sql.DataSource;
+import javax.transaction.SystemException;
+import javax.transaction.UserTransaction;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,15 +18,17 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
+@ApplicationException(rollback = true)
+@TransactionManagement(value = TransactionManagementType.BEAN)
 @Stateless
-public class UserDAO implements UserDAOLocal {
+public class UserDAO extends Exception implements UserDAOLocal {
 
     // Add business logic below.
     @Resource(lookup = "java:/AMT")
     private DataSource dataSource;
     private Connection connection;
-
+    @Resource
+    private UserTransaction user;
     public UserDAO() throws SQLException {
 
     }
@@ -214,26 +221,36 @@ public class UserDAO implements UserDAOLocal {
         return result;
     }
 
+
     @Override
     public int deleteUser(String email) throws SQLException {
         connection = dataSource.getConnection();
-        String deleteUser = "DELETE  FROM dev_users WHERE email LIKE ?";
         String deleteApp = "DELETE  FROM applications WHERE appOwner LIKE ?";
+        String deleteUser = "DELETE  FROM dev_users WHERE email LIKE ?";
+
         //TODO delete les users d'une applications une fois faite.
         int result = 0;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         try {
-            preparedStatement = connection.prepareStatement(deleteUser);
-            preparedStatement.setString(1, email);
-            preparedStatement.executeUpdate();
+
+            user.begin();
 
             preparedStatement = connection.prepareStatement(deleteApp);
             preparedStatement.setString(1, email);
             preparedStatement.executeUpdate();
             result = 1;
+            preparedStatement = connection.prepareStatement(deleteUser);
+            preparedStatement.setString(1, email);
+            preparedStatement.executeUpdate();
 
+            user.commit();
         } catch (Exception e) {
+            try {
+                user.rollback();
+            } catch (SystemException e1) {
+                e1.printStackTrace();
+            }
             e.printStackTrace();
         } finally {
             connection.close();

@@ -1,0 +1,4 @@
+Libellé,# Echantillons,Moyenne,Min,Max,Ecart type,% Erreur,Débit,Ko/sec reçus,Ko/sec émis,Moy. octets
+Go to login,10000,3,0,76,8.43,0.000%,1062.24772,1028.02,315.35,991.0
+ce logger,10000,9,1,245,18.71,0.000%,1062.69926,1497.53,263.60,1443.0
+TOTAL,20000,6,0,245,14.88,0.000%,2116.62610,2515.56,576.70,1217.0
