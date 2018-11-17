@@ -34,7 +34,7 @@
                <tr>
                   <c:if test="${admin eq 1}">
                      <th>Owner</th>
-                  </c:if>   
+                  </c:if>
                   <th>Name</th>
                   <th>Key API</th>
                   <th>Key Secret</th>
