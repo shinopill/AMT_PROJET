@@ -32,7 +32,9 @@
          <ul>
             <table>
                <tr>
-                  <th>Owner</th>
+                  <c:if test="${admin eq 1}">
+                     <th>Owner</th>
+                  </c:if>
                   <th>Name</th>
                   <th>Key API</th>
                   <th>Key Secret</th>

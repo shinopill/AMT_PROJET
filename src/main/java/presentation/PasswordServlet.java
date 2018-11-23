@@ -28,9 +28,11 @@ public class PasswordServlet extends javax.servlet.http.HttpServlet {
         String newPassConf = req.getParameter("newPassConf");
 
         HttpSession session = req.getSession(false);
+        System.out.println(session);
         if (session != null && session.getAttribute("email") != null) {
             User user = null;
             try {
+                System.out.println("email = " + (String) session.getAttribute("email"));
                  user = userDao.find((String) session.getAttribute("email"));
             } catch (SQLException e) {
                 e.printStackTrace();

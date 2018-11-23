@@ -1,16 +1,12 @@
 package session;
 
-import buisness.Email;
 import dao.ApplicationDAOLocal;
-import dao.UserDAO;
 import dao.UserDAOLocal;
 import model.Application;
 import model.User;
 
 import javax.ejb.EJB;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -68,7 +64,6 @@ public class LoginServlet extends javax.servlet.http.HttpServlet {
                         message = "Your account has been disabled";
                         redirectToIndex(req, resp, message);
                     } else if(isBeingReseted == 1){
-                        newSession.invalidate();
                         message = "Please change your password";
                         req.setAttribute("reseted",message);
                         req.getRequestDispatcher("/WEB-INF/pages/filtered/changePassword.jsp").forward(req, resp);
