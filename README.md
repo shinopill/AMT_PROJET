@@ -28,7 +28,9 @@ Deployment -> + Upload a Deployment -> Select the mysql driver.
 
 ### Add a Datasource for sql
 
-In the management :
+First you need to run the AMT.sql in order to create the database. 
+
+then go to the management in wildfly an do : 
 
 Configuration -> Subsytems -> Datasource & Drivers -> Datasource -> click on + and annd a Datasource.  
 For the Datasource do the following for each part :
