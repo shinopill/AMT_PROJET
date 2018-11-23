@@ -61,6 +61,17 @@ Name : Gmail
 JNDI name : java:jboss/mail/gmail
 ```
 
+Then go to Gmail -> view -> Server ànd complete go to add :
+
+```
+Outbound Socket Binding Ref : The socket you just creater
+Username : your mail
+password : your mail password
+SSL : true
+TLS : true
+
+
+```
 ### Run it
 
 Then you can deploy the war on the server and use it on localhost:8080
