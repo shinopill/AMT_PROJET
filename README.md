@@ -70,4 +70,6 @@ JNDI name : java:jboss/mail/gmail
 
 ### Run it
 
-Then you can deploy the war on the server and use it on localhost:8080
+Then you can deploy the war on the server and use it on localhost:8080.
+
+The admin account is:  admin@admin.com and the password is :a 
