@@ -16,16 +16,23 @@ This will add an admin user with name admin and password admin.
 
 ### DB resource :
 
-Once in the Wildfly management:
+
 
 ### Deploy the sql driver :
 
-You have to download the last mysql connector 'https://dev.mysql.com/downloads/connector/j/' or use the one in the images/wildfly directory  
+You have to download the last mysql connector 'https://dev.mysql.com/downloads/connector/j/' or use the one in the images/wildfly directory
+
+Then you go in the Wildfly management:
+
 Deployment -> + Upload a Deployment -> Select the mysql driver.
 
 ### Add a Datasource for sql
 
- Configuration -> Subsytems -> Datasource & Drivers -> Datasource -> click on + and annd a Datasource.  
+First you need to run the AMT.sql in order to create the database. 
+
+then go to the management in wildfly an do : 
+
+Configuration -> Subsytems -> Datasource & Drivers -> Datasource -> click on + and annd a Datasource.  
 For the Datasource do the following for each part :
 ```
 1) Select mysql  
@@ -41,6 +48,8 @@ For the Datasource do the following for each part :
 ### Email ressource
 
 ### Add a smtp socket :
+
+In the managment: 
 
 Go to Configuration -> socket Bindings -> standard socket -> view
 
@@ -74,4 +83,6 @@ TLS : true
 ```
 ### Run it
 
-Then you can deploy the war on the server and use it on localhost:8080
+Then you can deploy the war on the server and use it on http://localhost:8080/amt_project/ or run the code with your IDE.
+
+The admin account is:  admin@admin.com and the password is :a 
