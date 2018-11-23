@@ -16,16 +16,21 @@ This will add an admin user with name admin and password admin.
 
 ### DB resource :
 
-Once in the Wildfly management:
+
 
 ### Deploy the sql driver :
 
-You have to download the last mysql connector 'https://dev.mysql.com/downloads/connector/j/' or use the one in the images/wildfly directory  
+You have to download the last mysql connector 'https://dev.mysql.com/downloads/connector/j/' or use the one in the images/wildfly directory
+
+Then you go in the Wildfly management:
+
 Deployment -> + Upload a Deployment -> Select the mysql driver.
 
 ### Add a Datasource for sql
 
- Configuration -> Subsytems -> Datasource & Drivers -> Datasource -> click on + and annd a Datasource.  
+In the management :
+
+Configuration -> Subsytems -> Datasource & Drivers -> Datasource -> click on + and annd a Datasource.  
 For the Datasource do the following for each part :
 ```
 1) Select mysql  
@@ -41,6 +46,8 @@ For the Datasource do the following for each part :
 ### Email ressource
 
 ### Add a smtp socket :
+
+In the managment: 
 
 Go to Configuration -> socket Bindings -> standard socket -> view
 
